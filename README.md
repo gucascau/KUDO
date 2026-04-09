@@ -3,7 +3,7 @@
 ## Overview
 The urothelium is a specialized stratified epithelium lining the inner surface of the urinary tract, including the renal pelvis, ureters, bladder, and proximal urethra. It serves as a highly dynamic permeability barrier that protects underlying tissues from the toxic and osmotic stress of urine. The urothelium is organized into three functionally distinct layers: a basal progenitor layer capable of self-renewal, an intermediate transitional layer, and a superficial layer of terminally differentiated umbrella cells  that form tight junctions and apical plaques to maintain barrier integrity. Beyond its passive barrier role, the urothelium actively senses mechanical stimuli — including bladder filling and pressure changes — through mechanosensitive ion channels such as PIEZO1, and communicates bidirectionally with the underlying lamina propria via paracrine signaling. Disruption of urothelial integrity is a hallmark of obstructive uropathies and contributes to inflammation, fibrosis, and progressive kidney injury, making it a critical target for understanding disease pathogenesis.
 
-<img src="figs/Urothelium_Project_Fig.png" width="1500"/>
+<img src="Figs/Urothelium_Project_Fig.png" width="1500"/>
 
 This repository contains scripts for preprocessing and integrating multiple single-cell/single-nucleus RNA-seq datasets to study urothelial biology in the context of kidney injury (UUO model) and PIEZO1 channel modulation. Analyses are performed on mouse data aligned to the GRCm39 reference genome.
 
