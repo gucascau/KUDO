@@ -1,0 +1,12 @@
+cannot open file Vehicle_S1_L001_R1_001.fastq at /home/gdbecknelllab/xxw004/gdmanlab/Projects/Databases/RawDZscRNAseq/Scripts/ExtractSequenceCorrectedBaseOnLength.pl line 39.
+*************
+*1.0 version*
+*************
+Job Statistics for 7728418:
+           JobID       User               Start                 End    Elapsed   TotalCPU      State        NodeList 
+---------------- ---------- ------------------- ------------------- ---------- ---------- ---------- --------------- 
+         7728418     xxw004 2026-02-13T17:32:33 2026-02-13T17:32:34   00:00:01  00:00.239     FAILED r1pl-hpcf-h[02+ 
+   7728418.batch            2026-02-13T17:32:33 2026-02-13T17:32:34   00:00:01  00:00.233     FAILED   r1pl-hpcf-h02 
+  7728418.extern            2026-02-13T17:32:33 2026-02-13T17:32:34   00:00:01  00:00.006  COMPLETED r1pl-hpcf-h[02+ 
+Requested Resources: billing=144,cpu=144,mem=6096240M,node=1
+Maximum CPU Memory: 10.03M; 	CPU Efficiency: 0.00% of 00:02:24 core-walltime

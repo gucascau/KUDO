@@ -1,0 +1,9 @@
+/usr/bin/env: ‘Rscript’: No such file or directory
+Job Statistics for 7881306:
+           JobID       User               Start                 End    Elapsed   TotalCPU      State        NodeList 
+---------------- ---------- ------------------- ------------------- ---------- ---------- ---------- --------------- 
+         7881306     xxw004 2026-04-08T10:11:12 2026-04-08T10:11:13   00:00:01  00:00.010     FAILED   r1pl-hpcf-n07 
+   7881306.batch            2026-04-08T10:11:12 2026-04-08T10:11:13   00:00:01  00:00.009     FAILED   r1pl-hpcf-n07 
+  7881306.extern            2026-04-08T10:11:12 2026-04-08T10:11:13   00:00:01  00:00.001  COMPLETED   r1pl-hpcf-n07 
+Requested Resources: billing=1,cpu=1,mem=7455M,node=1
+Maximum CPU Memory: 1.08M; 	CPU Efficiency: 0.00% of 00:00:01 core-walltime

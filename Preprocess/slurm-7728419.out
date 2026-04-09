@@ -1,0 +1,12 @@
+cannot open file Yoda_S1_L001_R1_001.fastq at /home/gdbecknelllab/xxw004/gdmanlab/Projects/Databases/RawDZscRNAseq/Scripts/ExtractSequenceCorrectedBaseOnLength.pl line 39.
+*************
+*1.0 version*
+*************
+Job Statistics for 7728419:
+           JobID       User               Start                 End    Elapsed   TotalCPU      State        NodeList 
+---------------- ---------- ------------------- ------------------- ---------- ---------- ---------- --------------- 
+         7728419     xxw004 2026-02-13T17:32:40 2026-02-13T17:32:40   00:00:00  00:00.231     FAILED r1pl-hpcf-h[02+ 
+   7728419.batch            2026-02-13T17:32:40 2026-02-13T17:32:40   00:00:00  00:00.225     FAILED   r1pl-hpcf-h02 
+  7728419.extern            2026-02-13T17:32:40 2026-02-13T17:32:40   00:00:00  00:00.006  COMPLETED r1pl-hpcf-h[02+ 
+Requested Resources: billing=144,cpu=144,mem=6096240M,node=1
+Maximum CPU Memory: 9.51M; 	CPU Efficiency: 0.00% of 00:00:00 core-walltime

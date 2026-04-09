@@ -1,0 +1,773 @@
+Loading required package: SeuratObject
+Loading required package: sp
+
+Attaching package: ‘SeuratObject’
+
+The following objects are masked from ‘package:base’:
+
+    intersect, t
+
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ lubridate 1.9.5     ✔ tibble    3.3.1
+✔ purrr     1.2.1     ✔ tidyr     1.3.2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::combine() masks gridExtra::combine()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:lubridate’:
+
+    hour, isoweek, isoyear, mday, minute, month, quarter, second, wday,
+    week, yday, year
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+The following object is masked from ‘package:purrr’:
+
+    transpose
+
+Loading required package: R.oo
+Loading required package: R.methodsS3
+R.methodsS3 v1.8.2 (2022-06-13 22:00:14 UTC) successfully loaded. See ?R.methodsS3 for help.
+R.oo v1.27.1 (2025-05-02 21:00:05 UTC) successfully loaded. See ?R.oo for help.
+
+Attaching package: ‘R.oo’
+
+The following object is masked from ‘package:R.methodsS3’:
+
+    throw
+
+The following objects are masked from ‘package:methods’:
+
+    getClasses, getMethods
+
+The following objects are masked from ‘package:base’:
+
+    attach, detach, load, save
+
+R.utils v2.13.0 (2025-02-24 21:20:02 UTC) successfully loaded. See ?R.utils for help.
+
+Attaching package: ‘R.utils’
+
+The following object is masked from ‘package:tidyr’:
+
+    extract
+
+The following object is masked from ‘package:utils’:
+
+    timestamp
+
+The following objects are masked from ‘package:base’:
+
+    cat, commandArgs, getOption, isOpen, nullfile, parse, use, warnings
+
+
+Attaching package: ‘reshape2’
+
+The following objects are masked from ‘package:data.table’:
+
+    dcast, melt
+
+The following object is masked from ‘package:tidyr’:
+
+    smiths
+
+Loading required package: Rcpp
+
+Attaching package: ‘cowplot’
+
+The following object is masked from ‘package:lubridate’:
+
+    stamp
+
+
+Attaching package: ‘patchwork’
+
+The following object is masked from ‘package:cowplot’:
+
+    align_plots
+
+                     orig.ident nCount_RNA nFeature_RNA DataSet percent.mt
+GOF_AAAAAAAAAAAAGTCT        GOF       1460          798     GOF   6.095890
+GOF_AAAAAAAAAACGAGGG        GOF       1421          804     GOF   4.926108
+GOF_AAAAAAAAAACGCGAA        GOF        245          202     GOF   3.265306
+GOF_AAAAAAAAAACTCGTA        GOF       1728          871     GOF  10.358796
+GOF_AAAAAAAAACGATTTC        GOF       2314         1204     GOF   9.031979
+GOF_AAAAAAAAACGCCTCC        GOF        486          358     GOF   6.172840
+                         rDNA doublet_id celltype0421 sample percent.rRNA Group
+GOF_AAAAAAAAAAAAGTCT 17.94521    Singlet         <NA>   <NA>           NA  <NA>
+GOF_AAAAAAAAAACGAGGG 24.27868    Singlet         <NA>   <NA>           NA  <NA>
+GOF_AAAAAAAAAACGCGAA 24.48980    Singlet         <NA>   <NA>           NA  <NA>
+GOF_AAAAAAAAAACTCGTA 21.81713    Singlet         <NA>   <NA>           NA  <NA>
+GOF_AAAAAAAAACGATTTC 18.19360    Singlet         <NA>   <NA>           NA  <NA>
+GOF_AAAAAAAAACGCCTCC 22.22222    Singlet         <NA>   <NA>           NA  <NA>
+                     RNA_snn_res.0.4 seurat_clusters
+GOF_AAAAAAAAAAAAGTCT            <NA>            <NA>
+GOF_AAAAAAAAAACGAGGG            <NA>            <NA>
+GOF_AAAAAAAAAACGCGAA            <NA>            <NA>
+GOF_AAAAAAAAAACTCGTA            <NA>            <NA>
+GOF_AAAAAAAAACGATTTC            <NA>            <NA>
+GOF_AAAAAAAAACGCCTCC            <NA>            <NA>
+
+   Health UUO_Day10 UUO_Day14  UUO_Day2  UUO_Day4  UUO_Day6 
+      792       827      1131       755       649       781 
+
+               GOF GSM3827175_NMU_O_P GSM3827176_NMU_O_D                LOF 
+             66417               4955               5260               4753 
+       Urotherlium            Vehicle               Yoda 
+              4935              69220              34798 
+
+              KUDO UroBladderOrganoid                UUO 
+            175188              10215               4935 
+
+               GOF GSM3827175_NMU_O_P GSM3827176_NMU_O_D             Health 
+             66417               4955               5260                792 
+               LOF          UUO_Day10          UUO_Day14           UUO_Day2 
+              4753                827               1131                755 
+          UUO_Day4           UUO_Day6            Vehicle               Yoda 
+               649                781              69220              34798 
+[1] 190338
+[1] 190338
+Finding all pairwise anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 22026 anchors
+Filtering anchors
+	Retained 13301 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 167346 anchors
+Filtering anchors
+	Retained 31683 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 22046 anchors
+Filtering anchors
+	Retained 4872 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 106798 anchors
+Filtering anchors
+	Retained 26556 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 20510 anchors
+Filtering anchors
+	Retained 6208 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 113549 anchors
+Filtering anchors
+	Retained 25148 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 4130 anchors
+Filtering anchors
+	Retained 3335 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 4083 anchors
+Filtering anchors
+	Retained 3064 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 4132 anchors
+Filtering anchors
+	Retained 3288 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 4085 anchors
+Filtering anchors
+	Retained 3490 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 5641 anchors
+Filtering anchors
+	Retained 4216 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 5433 anchors
+Filtering anchors
+	Retained 3752 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 5639 anchors
+Filtering anchors
+	Retained 4214 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 5552 anchors
+Filtering anchors
+	Retained 4368 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3389 anchors
+Filtering anchors
+	Retained 2465 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3958 anchors
+Filtering anchors
+	Retained 3127 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3918 anchors
+Filtering anchors
+	Retained 2894 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3960 anchors
+Filtering anchors
+	Retained 3097 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3888 anchors
+Filtering anchors
+	Retained 3288 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2950 anchors
+Filtering anchors
+	Retained 2285 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3356 anchors
+Filtering anchors
+	Retained 2559 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3774 anchors
+Filtering anchors
+	Retained 3060 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3726 anchors
+Filtering anchors
+	Retained 2868 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3774 anchors
+Filtering anchors
+	Retained 3094 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3742 anchors
+Filtering anchors
+	Retained 3122 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2867 anchors
+Filtering anchors
+	Retained 2308 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3183 anchors
+Filtering anchors
+	Retained 2546 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2862 anchors
+Filtering anchors
+	Retained 2243 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3902 anchors
+Filtering anchors
+	Retained 3181 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3835 anchors
+Filtering anchors
+	Retained 2904 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3901 anchors
+Filtering anchors
+	Retained 3158 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3866 anchors
+Filtering anchors
+	Retained 3294 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2939 anchors
+Filtering anchors
+	Retained 2339 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3247 anchors
+Filtering anchors
+	Retained 2580 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2932 anchors
+Filtering anchors
+	Retained 2274 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2821 anchors
+Filtering anchors
+	Retained 2268 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3245 anchors
+Filtering anchors
+	Retained 2762 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3221 anchors
+Filtering anchors
+	Retained 2612 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3245 anchors
+Filtering anchors
+	Retained 2683 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3217 anchors
+Filtering anchors
+	Retained 2843 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2670 anchors
+Filtering anchors
+	Retained 2243 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2925 anchors
+Filtering anchors
+	Retained 2379 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2670 anchors
+Filtering anchors
+	Retained 2137 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2660 anchors
+Filtering anchors
+	Retained 2239 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 2609 anchors
+Filtering anchors
+	Retained 2132 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 23152 anchors
+Filtering anchors
+	Retained 13895 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 14177 anchors
+Filtering anchors
+	Retained 7192 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 23451 anchors
+Filtering anchors
+	Retained 13500 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 21809 anchors
+Filtering anchors
+	Retained 13197 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 4059 anchors
+Filtering anchors
+	Retained 1725 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 5360 anchors
+Filtering anchors
+	Retained 2464 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3894 anchors
+Filtering anchors
+	Retained 1277 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3728 anchors
+Filtering anchors
+	Retained 1443 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3859 anchors
+Filtering anchors
+	Retained 1477 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3217 anchors
+Filtering anchors
+	Retained 1301 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 24637 anchors
+Filtering anchors
+	Retained 15359 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 14547 anchors
+Filtering anchors
+	Retained 7296 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 24844 anchors
+Filtering anchors
+	Retained 15098 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 22846 anchors
+Filtering anchors
+	Retained 14454 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 4069 anchors
+Filtering anchors
+	Retained 1884 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 5445 anchors
+Filtering anchors
+	Retained 2581 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3884 anchors
+Filtering anchors
+	Retained 1603 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3733 anchors
+Filtering anchors
+	Retained 1578 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3861 anchors
+Filtering anchors
+	Retained 1634 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 3224 anchors
+Filtering anchors
+	Retained 1371 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 14347 anchors
+Filtering anchors
+	Retained 9223 anchors
+[1] 1
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 2
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 3
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 4
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 5
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 6
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 7
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 8
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 9
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 10
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 11
+Warning: Layer counts isn't present in the assay object; returning NULL
+[1] 12
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 10 into 4
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 8 into 3
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 9 into 1
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 5 into 2
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 6 into 4 10
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 7 into 4 10 6
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 2 5 into 1 9
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 12 into 3 8
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 11 into 3 8 12
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 4 10 6 7 into 1 9 2 5
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Merging dataset 3 8 12 11 into 1 9 2 5 4 10 6 7
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Warning: Layer counts isn't present in the assay object; returning NULL
+Warning: Assay integrated changing from Assay to SCTAssay
+Warning: Layer counts isn't present in the assay object; returning NULL
+There were 14 warnings (use warnings() to see them)
+PC_ 1 
+Positive:  Mecom, Rbms3, Gphn, Cdk8, Pard3, Pbx1, Maml2, Mast4, Foxp1, Pparg 
+	   Stox2, Myof, Ankrd44, mt-Nd4, Ppm1h, Alcam, mt-Co1, Itpr1, Ext1, Phactr2 
+	   Diaph2, Rbms1, Nfat5, Fry, Ralgapa2, Ano6, Tcf12, Ppp3ca, Plpp3, Msi2 
+Negative:  Ifitm3, Rpl13, Rps28, Rps18, Rps5, Rps27, Rps26, Rpl37, Rps8, Rpl18a 
+	   Rps14, Rps23, Rpl26, Rpl37a, Rpl23a, Rplp1, Rpl13a, Rps19, Rps29, Rpl41 
+	   Rpl32, Rps7, Rpl38, Rps27a, Rps12, Rps9, Rpl17, Rpl35a, Rpl23, Rps17 
+PC_ 2 
+Positive:  Gstm1, Sprr2a3, Sprr1a, Akr1b3, S100a6, Upk2, Wfdc2, Psca, Sptssb, Ly6d 
+	   Upk1a, Tmsb4x, Upk1b, Mal, Krt18, Fmo5, Krt8, Ivl, Ctsh, Lgals3 
+	   Fam162a, Krt19, Gsta4, Adh1, Mgst1, Plet1, Pdzk1ip1, Sfn, Ptgr1, Prdx5 
+Negative:  Ifitm3, Krt14, Ccnd2, Id3, Chd9, Ptma, Tmem176b, Cp, Mt2, Bcam 
+	   Tuba1b, Rbms3, Wwp1, Maml2, Cdk8, Son, Dynll1, Pbx1, Pard3, Ext1 
+	   Gphn, Tubb5, Aldh2, Foxp1, Mfge8, Tmem176a, Ranbp1, Slc39a4, Itgb4, Pdgfa 
+PC_ 3 
+Positive:  Gstm1, Rps27, Tmsb4x, Rpl37a, Rps28, Ly6d, Rpl37, Rps14, Rpl18a, Rps18 
+	   Rpl26, Rpl32, Rpl34, Rpl13, Rps26, Rpl17, Rps12, Rps23, Rpl13a, Rps5 
+	   Acaa1b, Rplp1, Rpl31, Rps27a, Rps25, Rps29, Plpp3, Rps7, Mgst1, Rps9 
+Negative:  Clu, Tubb4b, Psca, Cdkn1a, Tuba1b, Krt18, Tubb5, Ptma, Krt8, Nupr1 
+	   Upk1a, Tuba1c, Krt14, Upk2, Ifitm3, Calm2, Plet1, Gsto1, Dynll1, Smc4 
+	   Sprr1a, Mt2, Ranbp1, Hsp90aa1, Cd81, Acer2, H2-D1, Upk1b, Lig1, Dek 
+PC_ 4 
+Positive:  Clu, Sprr1a, Ifitm3, Psca, Ccnd2, Cbr2, Nupr1, Krt18, Plet1, Krt15 
+	   Gsto1, Krt8, Upk1a, Tmem176b, Upk2, Lgals3, Mfge8, Pdzk1ip1, Ly6e, Krt7 
+	   Sfn, Chd9, Atp1b1, Mal, Upk1b, Krt5, Tacstd2, S100a11, Krt14, Tmem176a 
+Negative:  Gstm1, Tubb4b, Tuba1b, Tubb5, Ptma, Tuba1c, Sprr2a3, Smc4, Calm2, Dek 
+	   Lig1, Ranbp1, Hmgb1, Hjurp, Akr1b3, Hint1, Txn1, Arl6ip1, Dbi, Fam162a 
+	   Banf1, Cdkn1a, Hsp90aa1, Bub3, Anapc11, Ppia, Nucks1, Gsta3, Lsm4, Cox7a2 
+PC_ 5 
+Positive:  Sprr2a3, Psca, Clu, Upk1a, Nupr1, Upk2, Fmo5, Cdk8, Acer2, Krt18 
+	   S100a1, Krt14, Snx31, Upk1b, Plet1, Gphn, Rps12, Ndrg2, Rpl26, Mecom 
+	   Rps28, Rplp1, Rpl38, Rpl37, Rps26, Rbms3, Gsn, Rpl41, Mt2, Rpl32 
+Negative:  Krt15, Ly6d, Cbr2, Mgst1, Sprr1a, Krt19, Krt5, Itm2b, Aqp3, Gsta4 
+	   Wfdc2, Sdc1, Cd9, Krt7, Acaa1b, Tmsb4x, Mgst3, Hes1, Idh1, Id2 
+	   Akr1b3, Perp, Id1, Psap, Fxyd3, Laptm4a, Chd9, Mfge8, Pkm, Spint2 
+Error in RunHarmony.Seurat(scrna, group.by.vars = "Sample", reduction = "pca",  : 
+  argument 3 matches multiple formal arguments
+Calls: RunHarmony
+Execution halted
+Job Statistics for 7878084:
+           JobID       User               Start                 End    Elapsed   TotalCPU      State        NodeList 
+---------------- ---------- ------------------- ------------------- ---------- ---------- ---------- --------------- 
+         7878084     xxw004 2026-04-07T22:18:59 2026-04-08T04:05:52   05:46:53   05:45:14     FAILED   r1pl-hpcf-h05 
+   7878084.batch            2026-04-07T22:18:59 2026-04-08T04:05:52   05:46:53   05:45:14     FAILED   r1pl-hpcf-h05 
+  7878084.extern            2026-04-07T22:18:59 2026-04-08T04:05:52   05:46:53  00:00.001  COMPLETED   r1pl-hpcf-h05 
+Requested Resources: billing=24,cpu=24,mem=1016040M,node=1
+Maximum CPU Memory: 347743.55M; 	CPU Efficiency: 4.15% of 5-18:45:12 core-walltime

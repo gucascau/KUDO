@@ -1,0 +1,12 @@
+cannot open file GOF_S1_L001_R1_001.fastq at /home/gdbecknelllab/xxw004/gdmanlab/Projects/Databases/RawDZscRNAseq/Scripts/ExtractSequenceCorrectedBaseOnLength.pl line 39.
+*************
+*1.0 version*
+*************
+Job Statistics for 7728421:
+           JobID       User               Start                 End    Elapsed   TotalCPU      State        NodeList 
+---------------- ---------- ------------------- ------------------- ---------- ---------- ---------- --------------- 
+         7728421     xxw004 2026-02-13T17:33:02 2026-02-13T17:33:02   00:00:00  00:00.224     FAILED r1pl-hpcf-h[02+ 
+   7728421.batch            2026-02-13T17:33:02 2026-02-13T17:33:02   00:00:00  00:00.217     FAILED   r1pl-hpcf-h02 
+  7728421.extern            2026-02-13T17:33:02 2026-02-13T17:33:02   00:00:00  00:00.006  COMPLETED r1pl-hpcf-h[02+ 
+Requested Resources: billing=144,cpu=144,mem=6096240M,node=1
+Maximum CPU Memory: 9.14M; 	CPU Efficiency: 0.00% of 00:00:00 core-walltime

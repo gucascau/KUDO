@@ -1,0 +1,162 @@
+Loading required package: SeuratObject
+Loading required package: sp
+
+Attaching package: ‘SeuratObject’
+
+The following objects are masked from ‘package:base’:
+
+    intersect, t
+
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ lubridate 1.9.5     ✔ tibble    3.3.1
+✔ purrr     1.2.1     ✔ tidyr     1.3.2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::combine() masks gridExtra::combine()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:lubridate’:
+
+    hour, isoweek, isoyear, mday, minute, month, quarter, second, wday,
+    week, yday, year
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+The following object is masked from ‘package:purrr’:
+
+    transpose
+
+Loading required package: R.oo
+Loading required package: R.methodsS3
+R.methodsS3 v1.8.2 (2022-06-13 22:00:14 UTC) successfully loaded. See ?R.methodsS3 for help.
+R.oo v1.27.1 (2025-05-02 21:00:05 UTC) successfully loaded. See ?R.oo for help.
+
+Attaching package: ‘R.oo’
+
+The following object is masked from ‘package:R.methodsS3’:
+
+    throw
+
+The following objects are masked from ‘package:methods’:
+
+    getClasses, getMethods
+
+The following objects are masked from ‘package:base’:
+
+    attach, detach, load, save
+
+R.utils v2.13.0 (2025-02-24 21:20:02 UTC) successfully loaded. See ?R.utils for help.
+
+Attaching package: ‘R.utils’
+
+The following object is masked from ‘package:tidyr’:
+
+    extract
+
+The following object is masked from ‘package:utils’:
+
+    timestamp
+
+The following objects are masked from ‘package:base’:
+
+    cat, commandArgs, getOption, isOpen, nullfile, parse, use, warnings
+
+
+Attaching package: ‘reshape2’
+
+The following objects are masked from ‘package:data.table’:
+
+    dcast, melt
+
+The following object is masked from ‘package:tidyr’:
+
+    smiths
+
+Loading required package: Rcpp
+
+Attaching package: ‘cowplot’
+
+The following object is masked from ‘package:lubridate’:
+
+    stamp
+
+
+Attaching package: ‘patchwork’
+
+The following object is masked from ‘package:cowplot’:
+
+    align_plots
+
+                     orig.ident nCount_RNA nFeature_RNA DataSet percent.mt
+GOF_AAAAAAAAAAAAGTCT        GOF       1460          798     GOF   6.095890
+GOF_AAAAAAAAAACGAGGG        GOF       1421          804     GOF   4.926108
+GOF_AAAAAAAAAACGCGAA        GOF        245          202     GOF   3.265306
+GOF_AAAAAAAAAACTCGTA        GOF       1728          871     GOF  10.358796
+GOF_AAAAAAAAACGATTTC        GOF       2314         1204     GOF   9.031979
+GOF_AAAAAAAAACGCCTCC        GOF        486          358     GOF   6.172840
+                         rDNA doublet_id celltype0421 sample percent.rRNA Group
+GOF_AAAAAAAAAAAAGTCT 17.94521    Singlet         <NA>   <NA>           NA  <NA>
+GOF_AAAAAAAAAACGAGGG 24.27868    Singlet         <NA>   <NA>           NA  <NA>
+GOF_AAAAAAAAAACGCGAA 24.48980    Singlet         <NA>   <NA>           NA  <NA>
+GOF_AAAAAAAAAACTCGTA 21.81713    Singlet         <NA>   <NA>           NA  <NA>
+GOF_AAAAAAAAACGATTTC 18.19360    Singlet         <NA>   <NA>           NA  <NA>
+GOF_AAAAAAAAACGCCTCC 22.22222    Singlet         <NA>   <NA>           NA  <NA>
+                     RNA_snn_res.0.4 seurat_clusters
+GOF_AAAAAAAAAAAAGTCT            <NA>            <NA>
+GOF_AAAAAAAAAACGAGGG            <NA>            <NA>
+GOF_AAAAAAAAAACGCGAA            <NA>            <NA>
+GOF_AAAAAAAAAACTCGTA            <NA>            <NA>
+GOF_AAAAAAAAACGATTTC            <NA>            <NA>
+GOF_AAAAAAAAACGCCTCC            <NA>            <NA>
+
+   Health UUO_Day10 UUO_Day14  UUO_Day2  UUO_Day4  UUO_Day6 
+      792       827      1131       755       649       781 
+
+               GOF GSM3827175_NMU_O_P GSM3827176_NMU_O_D                LOF 
+             66417               4955               5260               4753 
+       Urotherlium            Vehicle               Yoda 
+              4935              69220              34798 
+
+              KUDO UroBladderOrganoid                UUO 
+            175188              10215               4935 
+
+               GOF GSM3827175_NMU_O_P GSM3827176_NMU_O_D             Health 
+             66417               4955               5260                792 
+               LOF          UUO_Day10          UUO_Day14           UUO_Day2 
+              4753                827               1131                755 
+          UUO_Day4           UUO_Day6            Vehicle               Yoda 
+               649                781              69220              34798 
+[1] 190338
+[1] 190338
+Splitting ‘counts.GOF.Kudo’, ‘counts.LOF.Kudo’, ‘counts.Vehicle.Kudo’, ‘counts.Yoda.Kudo’, ‘counts.Urotherlium’, ‘counts.GSM3827175_NMU_O_P.UroBladderOrganoid’, ‘counts.GSM3827176_NMU_O_D.UroBladderOrganoid’, ‘data.GOF.Kudo’, ‘data.LOF.Kudo’, ‘data.Vehicle.Kudo’, ‘data.Yoda.Kudo’, ‘data.Urotherlium’, ‘data.GSM3827175_NMU_O_P.UroBladderOrganoid’, ‘data.GSM3827176_NMU_O_D.UroBladderOrganoid’ layers. Not splitting ‘scale.data.GOF.Kudo’, ‘scale.data.LOF.Kudo’, ‘scale.data.Vehicle.Kudo’, ‘scale.data.Yoda.Kudo’, ‘scale.data.Urotherlium’, ‘scale.data.GSM3827175_NMU_O_P.UroBladderOrganoid’, ‘scale.data.GSM3827176_NMU_O_D.UroBladderOrganoid’, ‘scale.data.UroBladderOrganoid’. If you would like to split other layers, set in `layers` argument.
+Error in `.local()`:
+! The following layers are already split: ‘counts.GOF.Kudo’,
+• ‘counts.LOF.Kudo’, ‘counts.Vehicle.Kudo’, ‘counts.Yoda.Kudo’,
+• ‘counts.Urotherlium’, ‘counts.GSM3827175_NMU_O_P.UroBladderOrganoid’,
+• ‘counts.GSM3827176_NMU_O_D.UroBladderOrganoid’, ‘data.GOF.Kudo’,
+• ‘data.LOF.Kudo’, ‘data.Vehicle.Kudo’, ‘data.Yoda.Kudo’,
+• ‘data.Urotherlium’, ‘data.GSM3827175_NMU_O_P.UroBladderOrganoid’,
+• ‘data.GSM3827176_NMU_O_D.UroBladderOrganoid’ Please join before
+• splitting
+Backtrace:
+    ▆
+ 1. ├─base::split(scrna[["RNA"]], f = scrna$Sample)
+ 2. └─SeuratObject (local) split(scrna[["RNA"]], f = scrna$Sample)
+ 3.   └─SeuratObject (local) .local(x, f, drop, ...)
+ 4.     └─rlang::abort(...)
+Execution halted
+Job Statistics for 7881307:
+           JobID       User               Start                 End    Elapsed   TotalCPU      State        NodeList 
+---------------- ---------- ------------------- ------------------- ---------- ---------- ---------- --------------- 
+         7881307     xxw004 2026-04-08T10:14:33 2026-04-08T10:18:15   00:03:42  03:35.869     FAILED   r1pl-hpcf-h04 
+   7881307.batch            2026-04-08T10:14:33 2026-04-08T10:18:15   00:03:42  03:35.867     FAILED   r1pl-hpcf-h04 
+  7881307.extern            2026-04-08T10:14:33 2026-04-08T10:18:15   00:03:42  00:00.002  COMPLETED   r1pl-hpcf-h04 
+Requested Resources: billing=24,cpu=24,mem=1016040M,node=1
+Maximum CPU Memory: 38763.64M; 	CPU Efficiency: 4.05% of 01:28:48 core-walltime

@@ -1,0 +1,38 @@
+*************
+*1.0 version*
+*************
+*************
+*1.0 version*
+*************
+2026-02-17_19-18-26   Running PIPseeker v3.3.0
+2026-02-17_19-18-26   Copyright (c) 2024 Fluent BioSciences. All rights reserved.
+2026-02-17_19-18-26   PIPseeker is up to date
+2026-02-17_19-18-26   Total Memory: 2.0TiB 
+2026-02-17_19-18-26   Available Memory: 1.9TiB
+2026-02-17_19-18-26   Available Disk Space: 94.2TiB 
+2026-02-17_19-18-27   FASTQ size: 14.3GiB 
+2026-02-17_19-18-27   Read lengths: R1=54 bases; R2=67 bases
+2026-02-17_19-18-27   Starting barcode processor
+2026-02-17_19-40-22   Starting STAR
+2026-02-17_19-57-47   Reading BAM file
+2026-02-17_20-15-31   Read 298092753 lines from BAM file
+2026-02-17_20-15-40   Matching BAM data to genes
+2026-02-17_20-20-06   Processed 298092753 lines
+2026-02-17_20-20-06   Constructing molecule info object
+2026-02-17_20-26-13   Saving molecule info file
+2026-02-17_20-26-16   Generating raw matrix
+2026-02-17_20-28-08   Writing matrix files
+2026-02-17_20-28-48   Performing cell calling
+2026-02-17_20-29-06   Writing cell calling results
+2026-02-17_20-31-37   Running clustering
+2026-02-17_20-32-33   Generating Metrics
+2026-02-17_20-32-50   Creating summary report
+2026-02-17_20-32-51   PIPseeker completed successfully in 4465 seconds
+Job Statistics for 7732813:
+           JobID       User               Start                 End    Elapsed   TotalCPU      State        NodeList 
+---------------- ---------- ------------------- ------------------- ---------- ---------- ---------- --------------- 
+         7732813     xxw004 2026-02-17T15:04:03 2026-02-17T20:32:54   05:28:51   10:17:35  COMPLETED r1pl-hpcf-h[01+ 
+   7732813.batch            2026-02-17T15:04:03 2026-02-17T20:32:54   05:28:51   10:17:35  COMPLETED   r1pl-hpcf-h01 
+  7732813.extern            2026-02-17T15:04:03 2026-02-17T20:32:54   05:28:51  00:00.006  COMPLETED r1pl-hpcf-h[01+ 
+Requested Resources: billing=144,cpu=144,mem=6096240M,node=1
+Maximum CPU Memory: 253465.73M; 	CPU Efficiency: 1.30% of 32-21:14:24 core-walltime
