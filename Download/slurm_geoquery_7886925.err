@@ -1,0 +1,297 @@
+Bioconductor version 3.19 (BiocManager 1.30.27), R 4.4.0 (2024-04-24)
+Installing package(s) 'GEOquery'
+trying URL 'https://bioconductor.org/packages/3.19/bioc/src/contrib/GEOquery_2.72.0.tar.gz'
+Content type 'application/gzip' length 13692930 bytes (13.1 MB)
+==================================================
+downloaded 13.1 MB
+
+* installing *source* package ‘GEOquery’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GEOquery)
+
+The downloaded source packages are in
+	‘/gpfs0/scratch/7886925/Rtmpl3Qutl/downloaded_packages’
+Installation paths not writeable, unable to update packages
+  path: /gpfs0/export/apps/opt/R/4.4.0-foss-2020a/lib64/R/library
+  packages:
+    boot, class, cluster, foreign, KernSmooth, lattice, MASS, Matrix, mgcv,
+    nlme, nnet, rpart, spatial, survival
+Old packages: 'arrow', 'backports', 'circlize', 'cli', 'clue', 'collections',
+  'cpp11', 'cyclocomp', 'devtools', 'distributional', 'dplyr', 'ellipsis',
+  'forecast', 'fs', 'furrr', 'future', 'GetoptLong', 'ggpattern', 'ggrepel',
+  'ggsci', 'GlobalOptions', 'globals', 'hardhat', 'highr', 'httpgd', 'httpuv',
+  'igraph', 'languageserver', 'later', 'lava', 'lazyeval', 'listenv',
+  'magrittr', 'mvtnorm', 'nanotime', 'nonnest2', 'pkgload', 'png', 'processx',
+  'prodlim', 'progressr', 'ps', 'ragg', 'RcppArmadillo', 'RcppGSL', 'RcppML',
+  'RcppParallel', 'RcppRoll', 'RcppSpdlog', 'RCurl', 'recipes', 'reticulate',
+  'rex', 'rgl', 'rio', 'rlang', 'rmarkdown', 'sf', 'shinyBS', 'Signac',
+  'sourcetools', 'spatstat.explore', 'spatstat.geom', 'spatstat.random',
+  'spatstat.univar', 'spatstat.utils', 'SQUAREM', 'systemfonts', 'terra',
+  'textshaping', 'tinytex', 'ucminf', 'units', 'vctrs', 'vroom', 'wrMisc',
+  'xfun', 'XML'
+Loading required package: Biobase
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Setting options('download.file.method.GEOquery'='auto')
+Setting options('GEOquery.inmemory.gpl'=FALSE)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::combine()    masks Biobase::combine(), BiocGenerics::combine()
+✖ dplyr::filter()     masks stats::filter()
+✖ dplyr::lag()        masks stats::lag()
+✖ ggplot2::Position() masks BiocGenerics::Position(), base::Position()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+============================================================
+Fetching: GSE234788
+Destination: /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Li_CellMetab2024_SHAREseq_GSE234788
+============================================================
+Found 1 file(s)
+GSE234788_series_matrix.txt.gz
+[GSE234788] Metadata fetched. Samples: 7
+[GSE234788] phenoData saved.
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE234nnn/GSE234788/suppl//GSE234788_GEO_ATAC_401875cells_meta.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 3053444 bytes (2.9 MB)
+==================================================
+downloaded 2.9 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE234nnn/GSE234788/suppl//GSE234788_GEO_RNA_446267cells_meta.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 2284975 bytes (2.2 MB)
+==================================================
+downloaded 2.2 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE234nnn/GSE234788/suppl//GSE234788_GEO_RNA_446267cells_meta_clinical_data.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 1900390 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE234nnn/GSE234788/suppl//GSE234788_P5_primer_ID.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 447 bytes
+==================================================
+downloaded 447 bytes
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE234nnn/GSE234788/suppl//GSE234788_RAW.tar?tool=geoquery'
+Content type 'application/x-tar' length 33354342400 bytes (31809.2 MB)
+==================================================
+downloaded 31809.2 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE234nnn/GSE234788/suppl//GSE234788_primer_sequence.py.gz?tool=geoquery'
+Content type 'application/x-gzip' length 3038 bytes
+==================================================
+downloaded 3038 bytes
+
+[GSE234788] Supplementary files downloaded:
+[GSE234788] Done.
+
+
+============================================================
+Fetching: GSE157079
+Destination: /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/GUDMAP_HumanBladder_GSE157079
+============================================================
+Found 2 file(s)
+GSE157079-GPL21103_series_matrix.txt.gz
+GSE157079-GPL21493_series_matrix.txt.gz
+[GSE157079] Metadata fetched. Samples: 7
+[GSE157079] phenoData saved.
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_P01-50_R1_001.trim.merged.nodup.no_chrM_MT.tn5.pval.signal.bigwig?tool=geoquery'
+Content type 'unknown' length 727677478 bytes (694.0 MB)
+==================================================
+downloaded 694.0 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_P02-50_R1_001.trim.merged.nodup.no_chrM_MT.tn5.pval.signal.bigwig?tool=geoquery'
+Content type 'unknown' length 1396987547 bytes (1332.3 MB)
+==================================================
+downloaded 1332.3 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_P0_adult_clusters.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 348767 bytes (340 KB)
+==================================================
+downloaded 340 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_P0_adult_counts.rds.gz?tool=geoquery'
+Content type 'application/x-gzip' length 128880390 bytes (122.9 MB)
+==================================================
+downloaded 122.9 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_P0_adult_pheno.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 304469 bytes (297 KB)
+==================================================
+downloaded 297 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_P0_adult_umap.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 1016621 bytes (992 KB)
+==================================================
+downloaded 992 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_P21-1-50_R1_001.trim.merged.nodup.no_chrM_MT.tn5.pval.signal.bigwig?tool=geoquery'
+Content type 'unknown' length 694319051 bytes (662.2 MB)
+==================================================
+downloaded 662.2 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_P21-2-50_R1_001.trim.merged.nodup.no_chrM_MT.tn5.pval.signal.bigwig?tool=geoquery'
+Content type 'unknown' length 565588943 bytes (539.4 MB)
+==================================================
+downloaded 539.4 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_P56-1-50_R1_001.trim.merged.nodup.no_chrM_MT.tn5.pval.signal.bigwig?tool=geoquery'
+Content type 'unknown' length 701711238 bytes (669.2 MB)
+==================================================
+downloaded 669.2 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_P56-2-50_R1_001.trim.merged.nodup.no_chrM_MT.tn5.pval.signal.bigwig?tool=geoquery'
+Content type 'unknown' length 493939151 bytes (471.1 MB)
+==================================================
+downloaded 471.1 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_snATAC_UMAP_coordinates.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 540016 bytes (527 KB)
+==================================================
+downloaded 527 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_snATAC_cell_by_peak_matrix.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 469810081 bytes (448.0 MB)
+==================================================
+downloaded 448.0 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_snATAC_metadata.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 221285 bytes (216 KB)
+==================================================
+downloaded 216 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl//GSE157079_snATAC_peak_list.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 5030623 bytes (4.8 MB)
+==================================================
+downloaded 4.8 MB
+
+[GSE157079] Supplementary files downloaded:
+[GSE157079] Done.
+
+
+============================================================
+Fetching: GSE129845
+Destination: /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Bhatt_JCI2019_HumanMouseBladder_GSE129845
+============================================================
+Found 2 file(s)
+GSE129845-GPL20795_series_matrix.txt.gz
+GSE129845-GPL21273_series_matrix.txt.gz
+[GSE129845] Metadata fetched. Samples: 3
+[GSE129845] phenoData saved.
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129845/suppl//GSE129845_RAW.tar?tool=geoquery'
+Content type 'application/x-tar' length 187371520 bytes (178.7 MB)
+==================================================
+downloaded 178.7 MB
+
+[GSE129845] Supplementary files downloaded:
+[GSE129845] Done.
+
+
+============================================================
+Fetching: GSE119531
+Destination: /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/GUDMAP_MouseUrinaryTract_GSE119531
+============================================================
+Found 1 file(s)
+GSE119531_series_matrix.txt.gz
+[GSE119531] Metadata fetched. Samples: 5
+[GSE119531] phenoData saved.
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE119nnn/GSE119531/suppl//GSE119531_Healthy.combined.cell.annotation.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 62160 bytes (60 KB)
+==================================================
+downloaded 60 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE119nnn/GSE119531/suppl//GSE119531_Healthy.combined.dge.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 14920290 bytes (14.2 MB)
+==================================================
+downloaded 14.2 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE119nnn/GSE119531/suppl//GSE119531_README_demultiplexing_rawfiles.txt?tool=geoquery'
+Content type 'text/plain; charset=utf-8' length 1408 bytes
+==================================================
+downloaded 1408 bytes
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE119nnn/GSE119531/suppl//GSE119531_UUO.cell.annotation.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 36123 bytes (35 KB)
+==================================================
+downloaded 35 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE119nnn/GSE119531/suppl//GSE119531_UUO.dge.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 6727790 bytes (6.4 MB)
+==================================================
+downloaded 6.4 MB
+
+[GSE119531] Supplementary files downloaded:
+[GSE119531] Done.
+
+
+============================================================
+Downloaded file summary:
+============================================================
+
+[GSE234788] 10 file(s) in /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Li_CellMetab2024_SHAREseq_GSE234788
+
+[GSE157079] 20 file(s) in /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/GUDMAP_HumanBladder_GSE157079
+
+[GSE129845] 7 file(s) in /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Bhatt_JCI2019_HumanMouseBladder_GSE129845
+
+[GSE119531] 9 file(s) in /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/GUDMAP_MouseUrinaryTract_GSE119531
+
+============================================================
+MANUAL DOWNLOAD REQUIRED:
+============================================================
+
+[Priority 2] KPMP snRNA-seq v1.0
+  DOI  : 10.48698/6k3k-q779
+  URL  : https://www.kpmp.org/doi-collection/10-48698-6k3k-q779
+  Dest : /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/KPMP_snRNAseq_v1
+  Steps: Visit URL, click Download, move files to Dest above.
+
+[Priority 2] KPMP Multiome v1.3 (snRNA-seq + snATAC-seq)
+  DOI  : 10.48698/92nk-e805
+  URL  : https://www.kpmp.org/doi-collection/10-48698-92nk-e805
+  Dest : /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/KPMP_Multiome_v1.3
+
+[Priority 3] Lake et al. Nature 2023 — Multimodal Human Kidney Atlas
+  URL  : https://cellxgene.cziscience.com  (search 'Lake kidney 2023')
+  Dest : /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Lake_Nature2023_KidneyAtlas
+  Steps: Download .h5ad file from CellxGene Discover.
+         Convert to Seurat with SeuratDisk::Convert() if needed:
+           library(SeuratDisk)
+           Convert('file.h5ad', dest = 'h5seurat', overwrite = TRUE)
+           obj <- LoadH5Seurat('file.h5seurat')
+
+Script complete: 2026-04-09 15:47:40.000541

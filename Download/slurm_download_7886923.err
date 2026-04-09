@@ -1,0 +1,108 @@
+--2026-04-09 15:34:56--  https://ftp.ncbi.nlm.nih.gov/geo/series/GSE234nnn/GSE234788/suppl/
+Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.7, 130.14.250.31, 2607:f220:41e:250::10, ...
+Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.7|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Li_CellMetab2024_SHAREseq_GSE234788/index.html.tmp’
+
+     0K .                                                      72.6M=0s
+
+2026-04-09 15:34:57 (72.6 MB/s) - ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Li_CellMetab2024_SHAREseq_GSE234788/index.html.tmp’ saved [1443]
+
+Loading robots.txt; please ignore errors.
+--2026-04-09 15:34:59--  https://ftp.ncbi.nlm.nih.gov/robots.txt
+Reusing existing connection to ftp.ncbi.nlm.nih.gov:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 26 [text/plain]
+Saving to: ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Li_CellMetab2024_SHAREseq_GSE234788/robots.txt’
+
+     0K                                                       100% 37.5M=0s
+
+2026-04-09 15:34:59 (37.5 MB/s) - ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Li_CellMetab2024_SHAREseq_GSE234788/robots.txt’ saved [26/26]
+
+Removing /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Li_CellMetab2024_SHAREseq_GSE234788/index.html.tmp since it should be rejected.
+
+FINISHED --2026-04-09 15:34:59--
+Total wall clock time: 2.4s
+Downloaded: 2 files, 1.4K in 0s (71.4 MB/s)
+--2026-04-09 15:34:59--  https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157079/suppl/
+Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.31, 130.14.250.7, 2607:f220:41e:250::13, ...
+Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.31|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/GUDMAP_HumanBladder_GSE157079/index.html.tmp’
+
+     0K ..                                                      128M=0s
+
+2026-04-09 15:34:59 (128 MB/s) - ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/GUDMAP_HumanBladder_GSE157079/index.html.tmp’ saved [2973]
+
+Loading robots.txt; please ignore errors.
+--2026-04-09 15:35:01--  https://ftp.ncbi.nlm.nih.gov/robots.txt
+Reusing existing connection to ftp.ncbi.nlm.nih.gov:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 26 [text/plain]
+Saving to: ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/GUDMAP_HumanBladder_GSE157079/robots.txt’
+
+     0K                                                       100% 36.4M=0s
+
+2026-04-09 15:35:02 (36.4 MB/s) - ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/GUDMAP_HumanBladder_GSE157079/robots.txt’ saved [26/26]
+
+Removing /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/GUDMAP_HumanBladder_GSE157079/index.html.tmp since it should be rejected.
+
+FINISHED --2026-04-09 15:35:02--
+Total wall clock time: 2.7s
+Downloaded: 2 files, 2.9K in 0s (126 MB/s)
+--2026-04-09 15:35:02--  https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129845/suppl/
+Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.7, 130.14.250.31, 2607:f220:41e:250::10, ...
+Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.7|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Bhatt_JCI2019_HumanMouseBladder_GSE129845/index.html.tmp’
+
+     0K                                                        34.3M=0s
+
+2026-04-09 15:35:02 (34.3 MB/s) - ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Bhatt_JCI2019_HumanMouseBladder_GSE129845/index.html.tmp’ saved [673]
+
+Loading robots.txt; please ignore errors.
+--2026-04-09 15:35:04--  https://ftp.ncbi.nlm.nih.gov/robots.txt
+Reusing existing connection to ftp.ncbi.nlm.nih.gov:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 26 [text/plain]
+Saving to: ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Bhatt_JCI2019_HumanMouseBladder_GSE129845/robots.txt’
+
+     0K                                                       100% 38.7M=0s
+
+2026-04-09 15:35:04 (38.7 MB/s) - ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Bhatt_JCI2019_HumanMouseBladder_GSE129845/robots.txt’ saved [26/26]
+
+Removing /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Bhatt_JCI2019_HumanMouseBladder_GSE129845/index.html.tmp since it should be rejected.
+
+FINISHED --2026-04-09 15:35:04--
+Total wall clock time: 2.4s
+Downloaded: 2 files, 699 in 0s (34.4 MB/s)
+--2026-04-09 15:35:04--  https://ftp.ncbi.nlm.nih.gov/geo/series/GSE119nnn/GSE119531/suppl/
+Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.31, 130.14.250.7, 2607:f220:41e:250::13, ...
+Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.31|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/GUDMAP_MouseUrinaryTract_GSE119531/index.html.tmp’
+
+     0K .                                                      52.8M=0s
+
+2026-04-09 15:35:05 (52.8 MB/s) - ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/GUDMAP_MouseUrinaryTract_GSE119531/index.html.tmp’ saved [1172]
+
+Loading robots.txt; please ignore errors.
+--2026-04-09 15:35:07--  https://ftp.ncbi.nlm.nih.gov/robots.txt
+Reusing existing connection to ftp.ncbi.nlm.nih.gov:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 26 [text/plain]
+Saving to: ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/GUDMAP_MouseUrinaryTract_GSE119531/robots.txt’
+
+     0K                                                       100% 39.9M=0s
+
+2026-04-09 15:35:07 (39.9 MB/s) - ‘/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/GUDMAP_MouseUrinaryTract_GSE119531/robots.txt’ saved [26/26]
+
+Removing /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/GUDMAP_MouseUrinaryTract_GSE119531/index.html.tmp since it should be rejected.
+
+FINISHED --2026-04-09 15:35:07--
+Total wall clock time: 3.2s
+Downloaded: 2 files, 1.2K in 0s (52.4 MB/s)

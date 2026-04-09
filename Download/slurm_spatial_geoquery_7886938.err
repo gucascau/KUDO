@@ -1,0 +1,140 @@
+Setting options('download.file.method.GEOquery'='auto')
+Setting options('GEOquery.inmemory.gpl'=FALSE)
+Loading required package: Biobase
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::combine()    masks Biobase::combine(), BiocGenerics::combine()
+✖ dplyr::filter()     masks stats::filter()
+✖ dplyr::lag()        masks stats::lag()
+✖ ggplot2::Position() masks BiocGenerics::Position(), base::Position()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+============================================================
+SP-3: GSE282059 — CosMx 6000-plex Human Kidney UUO + Healthy
+Status: ALREADY DOWNLOADED
+============================================================
+Files present (9):
+
+CosMx file format guide:
+  *_exprMat_file.csv   — gene expression matrix (cells × genes)
+  *_metadata_file.csv  — cell metadata (cell ID, FOV, x/y coordinates)
+  *_tx_file.csv        — per-transcript table (gene, x, y, cell)
+  *_fov_positions_file.csv — field-of-view coordinates
+  *_polygons.csv       — cell boundary polygons
+
+Load in R with Seurat:
+  library(Seurat)
+  nanostring_dir <- '/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/GSE282059'
+  tx   <- read.csv(file.path(nanostring_dir, 'GSE282059_2B_FFPE_tx_file.csv'))
+  meta <- read.csv(file.path(nanostring_dir, 'GSE282059_2B_FFPE_metadata_file.csv'))
+  expr <- read.csv(file.path(nanostring_dir, 'GSE282059_2B_FFPE_exprMat_file.csv'), row.names=1)
+  obj  <- CreateSeuratObject(counts = t(expr), meta.data = meta)
+
+
+============================================================
+SP-4: GSE253439 — CosMx 980-plex Human Kidney IgA/MCD/Pyelonephritis
+Status: ALREADY DOWNLOADED — Seurat object available
+============================================================
+Files present (26):
+
+Load pre-built Seurat object directly:
+  library(Seurat)
+  cosmx_obj <- readRDS('/vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/GSE253439/GSE253439_seurat_object_cosmx.rds.gz')
+Note: This is a pre-processed Seurat object — ready for immediate analysis.
+
+
+============================================================
+SP-1: Xuanyuan et al. Nat Commun 2025 — Mouse Xenium + Visium
+============================================================
+
+ACTION REQUIRED: Verify GEO accession number.
+  1. Go to: https://www.nature.com/articles/s41467-025-62599-9
+  2. Find 'Data Availability' section
+  3. Note the GEO accession (e.g., GSExxxxxx)
+  4. Uncomment and update the code below, then re-run this script.
+
+
+============================================================
+SP-2: Muto et al. Nat Genet 2024 — Human Visium + CosMx
+============================================================
+
+ACTION REQUIRED: Verify GEO accession number.
+  1. Go to: https://www.nature.com/articles/s41588-024-01802-x
+  2. Find 'Data Availability' section
+  3. Note the GEO accession (e.g., GSExxxxxx)
+  4. Uncomment and update the code below, then re-run this script.
+
+
+============================================================
+SPATIAL ANALYSIS ROADMAP:
+============================================================
+
+SP-3 (GSE282059 — Human CosMx 6000-plex UUO):
+  Manuscript role: Figure 7 spatial validation
+  Key analyses:
+    1. Load CosMx data into Seurat
+    2. Annotate urothelial cells using renal pelvis markers
+       (UPK1A, UPK2, UPK3A, KRT20, PPARG, FOXA1)
+    3. Compare renal pelvis identity score: UUO vs. Healthy
+    4. Visualize spatial distribution of renal pelvis TF regulon activity
+    5. Show spatial loss of PPARG/FOXA1 signal in UUO tissue sections
+
+SP-4 (GSE253439 — Human CosMx 980-plex Pyelonephritis):
+  Manuscript role: Figure 7 extended / Supplementary
+  Key analyses:
+    1. Load pre-built Seurat RDS object
+    2. Focus on pyelonephritis samples (upper urinary tract infection)
+    3. Score renal pelvis identity signature
+    4. Compare to IgA / MCD controls
+
+SP-1 (Mouse Xenium + Visium — pending accession):
+  Manuscript role: Figure 2 / Figure 5 spatial validation
+  Key analyses:
+    1. Spatially map renal pelvis-specific marker genes in mouse kidney
+    2. Confirm that site-specific genes are expressed in papilla/pelvis region
+    3. Use Xenium single-cell data to validate cell type assignments
+    4. Overlay TF regulon scores onto Visium spatial coordinates
+
+SP-2 (Human Visium + CosMx — pending accession):
+  Manuscript role: Figure 4 cross-species spatial validation
+  Key analyses:
+    1. Identify Uro2-equivalent cells in spatial context
+    2. Map PPARG/FOXA1 regulon activity in renal pelvis region
+    3. Compare spatial TF programs: healthy vs. CKD
+
+SP-5 (KPMP Visium — manual download):
+  Manuscript role: Figure 7 clinical validation
+  Key analyses:
+    1. Download from atlas.kpmp.org
+    2. Score renal pelvis signature on Visium spots
+    3. Correlate with histological fibrosis score
+
+Script complete: 2026-04-09 16:30:12.619448

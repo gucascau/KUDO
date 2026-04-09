@@ -1,0 +1,225 @@
+Setting options('download.file.method.GEOquery'='auto')
+Setting options('GEOquery.inmemory.gpl'=FALSE)
+Loading required package: Biobase
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.0     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::combine()    masks Biobase::combine(), BiocGenerics::combine()
+✖ dplyr::filter()     masks stats::filter()
+✖ dplyr::lag()        masks stats::lag()
+✖ ggplot2::Position() masks BiocGenerics::Position(), base::Position()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+============================================================
+Dataset  : Lindström et al. Mouse Kidney Development
+Accession: GSE108291 (Cell Reports 2018)
+Priority : DEV-1 — PRIMARY developmental dataset
+Use      : Ureteric bud lineage → renal pelvis progenitors
+Note     : Extract ureteric tip/trunk cells; compare TF programs to KUDO
+Dest     : /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/Lindstrom_CellRep2018_KidneyDev_GSE108291
+============================================================
+Found 2 file(s)
+GSE108291-GPL16791_series_matrix.txt.gz
+GSE108291-GPL17021_series_matrix.txt.gz
+[GSE108291] Samples: 4
+[GSE108291] phenoData saved.
+[GSE108291] Sample titles:
+[GSE108291] Downloading supplementary files...
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_kid_barcodes.tsv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 6840644 bytes (6.5 MB)
+==================================================
+downloaded 6.5 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_kid_genes.tsv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 217840 bytes (212 KB)
+==================================================
+downloaded 212 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_kid_matrix.mtx.gz?tool=geoquery'
+Content type 'application/x-gzip' length 141562619 bytes (135.0 MB)
+==================================================
+downloaded 135.0 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_kidney_counts.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 21130681 bytes (20.2 MB)
+==================================================
+downloaded 20.2 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_org4_barcodes.tsv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 6729 bytes
+==================================================
+downloaded 6729 bytes
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_org4_counts.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 5999760 bytes (5.7 MB)
+==================================================
+downloaded 5.7 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_org4_genes.tsv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 264787 bytes (258 KB)
+==================================================
+downloaded 258 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_org4_matrix.mtx.gz?tool=geoquery'
+Content type 'application/x-gzip' length 16841788 bytes (16.1 MB)
+==================================================
+downloaded 16.1 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_org_barcodes.tsv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 6840644 bytes (6.5 MB)
+==================================================
+downloaded 6.5 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_org_counts.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 21534225 bytes (20.5 MB)
+==================================================
+downloaded 20.5 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_org_genes.tsv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 264786 bytes (258 KB)
+==================================================
+downloaded 258 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE108nnn/GSE108291/suppl//GSE108291_org_matrix.mtx.gz?tool=geoquery'
+Content type 'application/x-gzip' length 108230313 bytes (103.2 MB)
+==================================================
+downloaded 103.2 MB
+
+[GSE108291] Files downloaded:
+[GSE108291] Done.
+
+
+>>> DEV-2 WARNING: MOCA is ~10–20 GB. Proceeding...
+
+============================================================
+Dataset  : Cao et al. Mouse Organogenesis Cell Atlas (MOCA)
+Accession: GSE119945 (Science 2019)
+Priority : DEV-2 — Supporting broad context
+Use      : Whole-embryo: trace ureteric bud emergence at E9.5–E13.5
+Note     : VERY LARGE (~2M cells). Subset to kidney/urinary tract after download.
+Dest     : /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/Cao_Science2019_MouseOrganogenesis_GSE119945
+============================================================
+Found 1 file(s)
+GSE119945_series_matrix.txt.gz
+[GSE119945] Samples: 760
+[GSE119945] phenoData saved.
+[GSE119945] Sample titles:
+[GSE119945] Downloading supplementary files...
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE119nnn/GSE119945/suppl//GSE119945_cell_annotate.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 106305526 bytes (101.4 MB)
+==================================================
+downloaded 101.4 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE119nnn/GSE119945/suppl//GSE119945_gene_annotate.csv.gz?tool=geoquery'
+Content type 'application/x-gzip' length 250385 bytes (244 KB)
+==================================================
+downloaded 244 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE119nnn/GSE119945/suppl//GSE119945_gene_count.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 3953838019 bytes (3770.7 MB)
+==================================================
+downloaded 3770.7 MB
+
+[GSE119945] Files downloaded:
+[GSE119945] Done.
+
+
+============================================================
+Dataset  : Menon et al. Human Fetal Kidney
+Accession: GSE185477 (Developmental Cell 2022)
+Priority : DEV-3 — Human cross-species developmental validation
+Use      : Human ureteric bud / collecting duct / early urothelial cells (wk 8-23)
+Note     : Cross-species closure: mouse dev (DEV-1) → human dev (DEV-3) → adult human (Li 2024)
+Dest     : /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Menon_DevCell2022_FetalKidney_GSE185477
+============================================================
+Found 1 file(s)
+GSE185477_series_matrix.txt.gz
+[GSE185477] Samples: 10
+[GSE185477] phenoData saved.
+[GSE185477] Sample titles:
+[GSE185477] Downloading supplementary files...
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE185nnn/GSE185477/suppl//GSE185477_Final_Metadata.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 5340345 bytes (5.1 MB)
+==================================================
+downloaded 5.1 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE185nnn/GSE185477/suppl//GSE185477_GSM3178784_C41_SC_raw_counts.zip?tool=geoquery'
+Content type 'application/zip' length 39286693 bytes (37.5 MB)
+==================================================
+downloaded 37.5 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE185nnn/GSE185477/suppl//GSE185477_RAW.tar?tool=geoquery'
+Content type 'application/x-tar' length 1274798080 bytes (1215.7 MB)
+==================================================
+downloaded 1215.7 MB
+
+[GSE185477] Files downloaded:
+[GSE185477] Done.
+
+
+============================================================
+Downloaded file inventory:
+============================================================
+
+[GSE108291] 17 file(s) | Total: 353.8 MB | Dir: /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/Lindstrom_CellRep2018_KidneyDev_GSE108291
+
+[GSE119945] 6 file(s) | Total: 4095.9 MB | Dir: /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Mouse/Cao_Science2019_MouseOrganogenesis_GSE119945
+
+[GSE185477] 6 file(s) | Total: 1332.5 MB | Dir: /vast0/home/gdjacksonlab/lab/xxw004/UUO/Datasets/Human/Menon_DevCell2022_FetalKidney_GSE185477
+
+============================================================
+NEXT STEPS after download:
+============================================================
+
+DEV-1 (GSE108291 — Lindström):
+  → Load count matrix into Seurat
+  → Subset to ureteric bud / ureteric tip / trunk cells
+  → Run decoupleR TF activity
+  → Compare TF regulons to KUDO Vehicle (adult renal pelvis)
+  → Key question: are adult renal pelvis TFs already active in ureteric bud?
+
+DEV-2 (GSE119945 — Cao MOCA):
+  → Subset to kidney lineage cells (annotated as 'Kidney' or 'Urinary tract')
+  → Use as broad context for ureteric bud emergence timing
+  → Focus on E11.5–E13.5 window (ureteric bud branching stage)
+
+DEV-3 (GSE185477 — Menon human fetal):
+  → Subset to ureteric bud / collecting duct / urothelial cells
+  → Cross-species comparison: mouse ureteric bud TFs vs. human fetal TFs
+  → Bridge: human fetal (DEV-3) → human adult Uro2 (Li et al. 2024)
+  → Closes the developmental → adult → disease loop in human
+
+DEV-4 (GUDMAP portal — manual):
+  → Browse: gudmap.org → Gene Expression
+  → Key genes: PPARG, FOXA1, GATA3, TP63, KRT5, UPK1A, KRT20
+  → Filter: renal pelvis + ureter + bladder across E11.5 to adult
+  → Download ISH images for manuscript supplementary figures
+
+Script complete: 2026-04-09 16:02:34.056901
