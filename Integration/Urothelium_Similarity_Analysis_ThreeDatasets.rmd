@@ -108,17 +108,112 @@ dir.create(paste0(KUDODir,"CellCommunication/"))
 ```
 
 ```{r}
+
 # Load the integrated object
 
-AllUrothelium<- readRDS("KudoUUOComparision_Scrna_Merged_harmonyIntegration.rds")
+# HarmonyIntegration
+AllUrothelium<- readRDS("KudoUUOComparision_Scrna_Merged_RunHarmony.rds")
 
-#
-# We need to join the layers
-AllUrothelium <- JoinLayers(AllUrothelium)
+#AllUrothelium <- JoinLayers(AllUrothelium)
+
+# rpca integration
+
 ```
 
 
 ```{r}
+# ─── Pairwise correlation matrix for all 12 samples ───────────────────────────
+
+# Step 1: Split AllUrothelium by Sample into a named list of Seurat objects
+sample_levels <- c("Vehicle", "Yoda", "LOF", "GOF", "Health",
+                   "UUO_Day2", "UUO_Day4", "UUO_Day6", "UUO_Day10", "UUO_Day14",
+                   "GSM3827175_NMU_O_P", "GSM3827176_NMU_O_D")
+
+DefaultAssay(AllUrothelium) <- "RNA"
+AllUrothelium <- JoinLayers(AllUrothelium)
+
+sample_list <- lapply(sample_levels, function(s) {
+  subset(AllUrothelium, subset = Sample == s)
+})
+names(sample_list) <- sample_levels
+
+# Step 2: Compute per-sample average expression vectors
+avg_expr_list <- lapply(sample_list, function(obj) {
+  Matrix::rowMeans(GetAssayData(obj, assay = "RNA", layer = "data"))
+})
+
+# Step 3: Find genes expressed (mean > 0) in ALL 12 samples
+shared_genes <- Reduce(intersect, lapply(avg_expr_list, function(avg) {
+  names(avg[avg > 0])
+}))
+message("Shared expressed genes across all 12 samples: ", length(shared_genes))
+
+# Step 4: Build a gene × sample matrix restricted to shared genes
+expr_matrix <- do.call(cbind, lapply(avg_expr_list, function(avg) avg[shared_genes]))
+colnames(expr_matrix) <- sample_levels
+
+# Step 5: Compute pairwise Spearman correlation matrix
+cor_matrix <- cor(expr_matrix, method = "spearman")
+
+# Step 6: Save the numeric matrix
+write.csv(cor_matrix, "AllUrothelium_12Sample_SpearmanCorrelation.csv")
+
+# Step 7: Heatmap
+library(pheatmap)
+pdf("AllUrothelium_12Sample_SpearmanCorrelation_Heatmap.pdf", width = 8, height = 7)
+pheatmap(cor_matrix,
+         color        = colorRampPalette(c("white", "#2166ac"))(100),
+         breaks       = seq(0.8, 1, length.out = 101),
+         display_numbers = TRUE,
+         number_format   = "%.3f",
+         fontsize_number = 7,
+         cluster_rows = TRUE, cluster_cols = TRUE,
+         main   = "Spearman Correlation — 12 Samples (shared expressed genes)",
+         filename = "AllUrothelium_12Sample_SpearmanCorrelation_Heatmap.pdf",
+         width = 8, height = 7)
+dev.off()
+```
+
+# We tried to identify the best strategy for the integration of the datasets, we found that the Harmony integration can better integrate the datasets and show better overlapping of the samples in the UMAP plot. So we used the Harmony integration for the following analysis.
+
+```{r}
+
+# We read the director and identify the .rds files in the directory then run the loops to read the .rds files 
+Filenames <- list.files(path = KUDODir, pattern = "KudoUUOComparision_Scrna_Merged_*.rds", full.names = TRUE, recursive = F)
+
+# we read the .rds files and assign them to the objects, generate the files for the following analysis
+for (i in 1:length(Filenames)) {
+  
+    # read the .rds file
+    obj <- readRDS(Filenames[i])
+    # assign the name of the object as the name of the file without the .rds extension
+    name <- gsub(".rds", "", Filenames[i])
+    # print the name of the object to confirm it was created
+    print(paste("Loaded object:", gsub(".rds", "", basename(Filenames[i]))))
+    # Join the layers
+    obj <- JoinLayers(obj)
+    # set up the object with Sample levels
+    obj@meta.data$Sample <- ordered(factor(obj@meta.data$Sample), levels = c("Vehicle", "Yoda", "LOF", "GOF", "Health","UUO_Day2","UUO_Day4","UUO_Day6","UUO_Day10","UUO_Day14", "GSM3827175_NMU_O_P", "GSM3827176_NMU_O_D"))
+    # generate the dimplot for the object with group.by Sample and split.by Sample
+    
+    AllUrotheliumDimPlotGroupBySample<- DimPlot(obj, group.by = "Sample")
+    # save the plot 
+    ggsave(paste0(name,"_DimPlotGroupBySample.pdf"),plot = AllUrotheliumDimPlotGroupBySample, height = 4, width = 5)
+    # check the sample distribution of DimPlot with split.by Sample group by harmony cluster
+    AllUrotheliumDimPlotGroupBySample<- DimPlot(obj, group.by = "harmony_clusters", split.by = "Sample")
+    # save the plot
+    ggsave(paste0(name,"_DimPlotSplitBySample.pdf"),plot = AllUrotheliumDimPlotGroupBySample, height = 4, width = 15)
+
+    # check the number of cells in each sample
+    SampleNumber<- table(obj@meta.data$Sample)
+    write.csv(SampleNumber,paste0(name,"_Urothelium_SampleNumber.csv"))
+
+    GroupNumber<- table(obj@meta.data$Group)
+    write.csv(GroupNumber,paste0(name,"_Urothelium_GroupNumber.csv"))
+
+}
+
+
 # Some basic information about the object and the metadata
 
 AllUrothelium
@@ -131,11 +226,22 @@ AllUrothelium@meta.data$Sample<- ordered(factor(AllUrothelium@meta.data$Sample),
 # check the sample distribution of DimPlot
 AllUrotheliumDimPlotGroupBySample<- DimPlot(AllUrothelium, group.by = "Sample")
 # save the plot 
-ggsave("AllUrotheliumDimPlotGroupBySample.pdf",plot = AllUrotheliumDimPlotGroupBySample, height = 4, width = 5)
+ggsave("AllUrotheliumDimPlotGroupBySample_RunHarmony.pdf",plot = AllUrotheliumDimPlotGroupBySample, height = 4, width = 6)
 # check the sample distribution of DimPlot with split.by Sample group by harmony cluster
-AllUrotheliumDimPlotGroupBySample<- DimPlot(AllUrothelium, group.by = "harmony_clusters", split.by = "Sample")
+AllUrotheliumDimPlotSplitBySample<- DimPlot(AllUrothelium, group.by = "seurat_clusters", split.by = "Sample")
 # save the plot
-ggsave("AllUrotheliumDimPlotGroupBySampleSplitBySample.pdf",plot = AllUrotheliumDimPlotGroupBySample, height = 4, width = 15)
+ggsave("AllUrotheliumDimPlotSplitBySample_RunHarmony.pdf",plot = AllUrotheliumDimPlotSplitBySample, height = 4, width = 20)
+
+# check the sample distribution of DimPlot with split.by Sample group by harmony cluster
+AllUrotheliumDimPlotSplitByGroup<- DimPlot(AllUrothelium, group.by = "seurat_clusters", split.by = "Group")
+# save the plot
+ggsave("AllUrotheliumDimPlotSplitByGroup_RunHarmony.pdf",plot = AllUrotheliumDimPlotSplitByGroup, height = 4, width = 12)
+
+
+# check the sample distribution of DimPlot with split.by Sample group by harmony cluster
+AllUrotheliumDimPlotGroupByGroup<- DimPlot(AllUrothelium, group.by = "Group")
+# save the plot
+ggsave("AllUrotheliumDimPlotGroupByGroup_RunHarmony.pdf",plot = AllUrotheliumDimPlotGroupByGroup, height = 4, width = 6)
 
 # check the number of cells in each sample
 SampleNumber<- table(AllUrothelium@meta.data$Sample)
@@ -143,39 +249,24 @@ write.csv(SampleNumber,"Urothelium_SampleNumber.csv")
 
 GroupNumber<- table(AllUrothelium@meta.data$Group)
 write.csv(GroupNumber,"Urothelium_GroupNumber.csv")
-
-getwd()
 ```
 
 ```{r}
 # we used the clustered method to extract the urothelium
-Urothelium_S1<- subset(UUOProjectObject_F, idents = "Uro")
-# 
-
-Urothelium_S1@meta.data <- Urothelium_S1@meta.data %>% mutate(Group= case_when(grepl("UUO",sample) ~"UUO", 
-                                                 grepl("Health",sample) ~ "Health",
-                                                grepl("IRI",sample) ~"IRI",
-                                                .default = as.character(sample)
-                                                 ))
-factor(Urothelium_S1@meta.data$Group)
-Urothelium_S1@meta.data$Group<- ordered(factor(Urothelium_S1@meta.data$Group),levels=c("Health","IRI","UUO"))
-
-# we only select the Urothelium that in Health and UUO model
-Urothelium_S2 <- subset (Urothelium_S1, subset =(Group == "Health" | Group== "UUO") )
-
-table(UUOProjectObject_F@meta.data$sample)
+table(AllUrothelium@meta.data$Sample)
 # we measure the Upk3a, Upk1a, Upk1b and Upk2 positive cell numbers
-Upk3aUro <- subset(Urothelium_S2, subset = Upk3a > 2 )
-Upk1aUro <- subset(Urothelium_S2, subset = Upk1a > 2 )
-Upk1bUro <- subset(Urothelium_S2, subset = Upk1b > 2 )
-Upk2Uro <- subset(Urothelium_S2, subset = Upk2 > 2 )
+Upk3aUro <- subset(AllUrothelium, subset = Upk3a > 2 )
+Upk1aUro <- subset(AllUrothelium, subset = Upk1a > 2 )
+Upk1bUro <- subset(AllUrothelium, subset = Upk1b > 2 )
+Upk2Uro <- subset(AllUrothelium, subset = Upk2 > 2 )
 table(Upk3aUro@meta.data$sample)
 table(Upk1aUro@meta.data$sample)
 table(Upk1bUro@meta.data$sample)
 table(Upk2Uro@meta.data$sample)
+#rm(Upk3aUro, Upk1aUro, Upk1bUro, Upk2Uro)
 
-Krt5Uro <- subset(Urothelium_S2, subset = Krt5 > 2 )
-Krt14Uro <- subset(Urothelium_S2, subset = Krt14 > 2 )
+Krt5Uro <- subset(AllUrothelium, subset = Krt5 > 2 )
+Krt14Uro <- subset(AllUrothelium, subset = Krt14 > 2 )
 
 table(Krt5Uro@meta.data$sample)
 table(Krt14Uro@meta.data$sample)
@@ -212,22 +303,24 @@ dim(Urothelium)
 ```{r}
 # We collected the dataset from the KUDO and Compared the expression of genes from Control
 # Correlation of Average Expression
-# 1. Compute average expression per cluster (organoid urothelium vs mouse urothelium).
+# 1. Compute average expression per cluster (organoid urothelium vs mouse urothelium, and bladder urothelium organoid).
 # Pearson or Spearman correlation:
-MouseCells <- subset(scrna, subset = Group == "Health")
+MouseUrothelum <- subset(AllUrothelium, subset = Group == "UUO")
 
 # we only concentrate on the urothelium
 MouseUrothelum@meta.data %>% head()
-# 
-MouseUrothelum <- subset(MouseCells, subset = celltype0421 == "Uro")
+# # 
+# MouseUrothelum <- subset(MouseCells, subset = celltype0421 == "Uro")
 
 
 Idents(MouseUrothelum)
-OrganoidUrothelium <- subset(scrna, subset = Group == "KudoVehicle")
+OrganoidUrothelium <- subset(AllUrothelium, subset = Group == "KUDO")
 # integrated the layers
 DefaultAssay(OrganoidUrothelium) <- "RNA"
 
 OrganoidUrothelium <- JoinLayers(OrganoidUrothelium)
+
+
 
 # get the average expression of the genes in the mouse urothelium and organoid urothelium
 expr_mat <- GetAssayData(

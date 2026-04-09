@@ -100,4 +100,9 @@ sbatch Integration/Urothelium_KUDO_UrotheliaOrganoid_Integration.sh
 ## Contact
 
 Xin Wang — xin.wang@nationwidechildrens.org  
-Jackson Lab / Becknell Lab, Nationwide Children's Hospital
+
+Nationwide Children's Hospital
+
+Copyright (c) 2026 Xin Wang
+
+Current version v1.0
