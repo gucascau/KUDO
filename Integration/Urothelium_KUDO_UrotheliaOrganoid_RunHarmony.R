@@ -221,7 +221,7 @@ vfeatures <- lapply(cell_by_cond, function(cells){
     VariableFeatures()
 })
 VariableFeatures(scrna) <- unique(unlist(vfeatures))
-length(VariableFeatures(pbmc))
+length(VariableFeatures(scrna))
 
 scrna <- ScaleData(scrna, verbose = FALSE)
 # |>
