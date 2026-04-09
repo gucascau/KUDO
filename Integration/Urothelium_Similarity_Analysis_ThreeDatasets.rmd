@@ -1,0 +1,724 @@
+---
+title: "Urothelium_Integrationof_UUOandIRI_BladderOrganoid_Similarity"
+author: "Xin Wang"
+date: "2026-04-22"
+email: xin.wang@nationwidechildrens.org
+output: html_document
+
+Description:
+  Method Part1: Select the Urothelium cells in the object
+  Method reference: https://satijalab.org/seurat/articles/integration_introduction.html
+    -- Global Correlation of Average Expression for the shared genes between the three datasets (organoid urothelium, mouse urothelium, and bladder urothelium organoid).
+    -- Marker gene expression Overlaping for the shared genes between the three datasets (organoid urothelium, mouse urothelium, and bladder urothelium organoid).
+    -- Jaccard index for the top 1000 variable genes in the three datasets (organoid urothelium, mouse urothelium, and bladder urothelium organoid).
+    -- Correlation of the average expression of the genes in the three datasets (organoid urothelium, mouse urothelium, and bladder urothelium organoid).
+    -- Correlation of the average expression of the lineage markers in the three datasets (organoid urothelium, mouse urothelium, and bladder urothelium organoid).
+    -- Annotation of different urothelium subtypes: basal, intermediate and umbrella cells in the three datasets (organoid urothelium, mouse urothelium, and bladder urothelium organoid).
+    -- Functional enrichment analysis of the top 1000 variable genes in the three datasets (organoid urothelium, mouse urothelium, and bladder urothelium organoid).
+    
+
+Dataset Description: 
+
+   uni-IRI and UUO on wild type adult male mice: which enthanized at multiple timepoints
+   as the disease progress (0.6 house and 2, 7. 14 28 days post uni-IRI or 0,2,4, 6, 10,14 days post UUO), n=2 for each timepoint)
+   GEO: GSE190887
+   GEO reference: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi
+   Reference: Li H, Dixon EE, Wu H, Humphreys BD. Comprehensive single-cell transcriptional profiling defines shared and unique epithelial injury responses during kidney fibrosis. Cell Metab 2022 Dec 6;34(12):1977-1998.e9.
+  
+   Platform: Illumina NovaSeq 6000
+  
+  snRNA-seq provied another strategy for performing single cell transcriptomics where individual nuclei instead of cells are captured and sequenced.
+    Advantages: snRNA-seq over scRNA-seq is that they don't need dissociation to preseve cell integrity during sample preparation.
+    Disadvantages: loss of transcripts are primarily located in the cytoplasm potentially limited the availiablity of biological signals for gene with little nuclear localization.
+
+    Urothelium organoid dataset: GSE131909_RAW
+  Reference: Santos, C.P., Lapi, E., Martínez de Villarreal, J. et al. Urothelial organoids originating from Cd49fhigh mouse stem cells display Notch-dependent differentiation capacity. Nat Commun 10, 4407 (2019). https://doi.org/10.1038/s41467-019-12307-1n.
+
+---
+
+```{r}
+module purge
+ml GCC/9.3.0
+ml OpenMPI/4.0.3
+ml R/4.4.0
+R
+capabilities()
+plot(1:20)
+```
+
+## Step 1: Load the packages
+```{r}
+## Please install all the packages before loading them.
+library(Seurat)
+library(gridExtra)
+library(ggplot2)
+library(tidyverse)
+library(data.table)
+#install.packages('R.utils')
+library(R.utils)
+library(reshape2)
+library(stringr)
+library(harmony)
+library(cowplot)
+
+library(patchwork)
+library(decoupleR)
+
+# Extra libraries
+library(dplyr)
+library(pheatmap)
+
+library(patchwork)
+
+#options(Seurat.object.assay.version = "v5")
+
+options(future.globals.maxSize = 1e12)
+
+
+# remotes::install_github("satijalab/seurat", "seurat5", quiet = TRUE)
+# remotes::install_github("satijalab/seurat-data", "seurat5", quiet = TRUE)
+# remotes::install_github("satijalab/azimuth", "seurat5", quiet = TRUE)
+# remotes::install_github("satijalab/seurat-wrappers", "seurat5", quiet = TRUE)
+# remotes::install_github("stuart-lab/signac", "seurat5", quiet = TRUE)
+# #remotes::install_github("bnprks/BPCells", quiet = TRUE)
+# remotes::install_github("bnprks/BPCells", quiet = TRUE)
+# # Enter commands in R (or R studio, if installed)
+
+sessionInfo()
+```
+
+
+
+## Step 2: Set up the workspace environment:
+```{r}
+
+setwd("/home/gdbecknelllab/xxw004/gdjacksonlab/UUO/Results/KUDOs/Integration/IntegratingUUO_Organoid/")
+KUDODir <- c("/home/gdbecknelllab/xxw004/gdjacksonlab/UUO/Results/KUDOs/Integration/IntegratingUUO_Organoid/")
+
+# Make directories for the results
+# annotation directory
+dir.create(paste0(KUDODir,"Annotation/"))
+# DEG directory
+dir.create(paste0(KUDODir,"DEG/"))
+# Feature directory
+dir.create(paste0(KUDODir,"Feature/"))
+# Cell cell communication directory
+dir.create(paste0(KUDODir,"CellCommunication/"))
+
+```
+
+```{r}
+# Load the integrated object
+
+AllUrothelium<- readRDS("KudoUUOComparision_Scrna_Merged_harmonyIntegration.rds")
+
+#
+# We need to join the layers
+AllUrothelium <- JoinLayers(AllUrothelium)
+```
+
+
+```{r}
+# Some basic information about the object and the metadata
+
+AllUrothelium
+AllUrothelium@meta.data %>% head()
+
+# set up the order of Samples levels
+
+AllUrothelium@meta.data$Sample<- ordered(factor(AllUrothelium@meta.data$Sample),levels=c("Vehicle", "Yoda", "LOF", "GOF", "Health","UUO_Day2","UUO_Day4","UUO_Day6","UUO_Day10","UUO_Day14", "GSM3827175_NMU_O_P", "GSM3827176_NMU_O_D"))
+
+# check the sample distribution of DimPlot
+AllUrotheliumDimPlotGroupBySample<- DimPlot(AllUrothelium, group.by = "Sample")
+# save the plot 
+ggsave("AllUrotheliumDimPlotGroupBySample.pdf",plot = AllUrotheliumDimPlotGroupBySample, height = 4, width = 5)
+# check the sample distribution of DimPlot with split.by Sample group by harmony cluster
+AllUrotheliumDimPlotGroupBySample<- DimPlot(AllUrothelium, group.by = "harmony_clusters", split.by = "Sample")
+# save the plot
+ggsave("AllUrotheliumDimPlotGroupBySampleSplitBySample.pdf",plot = AllUrotheliumDimPlotGroupBySample, height = 4, width = 15)
+
+# check the number of cells in each sample
+SampleNumber<- table(AllUrothelium@meta.data$Sample)
+write.csv(SampleNumber,"Urothelium_SampleNumber.csv")
+
+GroupNumber<- table(AllUrothelium@meta.data$Group)
+write.csv(GroupNumber,"Urothelium_GroupNumber.csv")
+
+getwd()
+```
+
+```{r}
+# we used the clustered method to extract the urothelium
+Urothelium_S1<- subset(UUOProjectObject_F, idents = "Uro")
+# 
+
+Urothelium_S1@meta.data <- Urothelium_S1@meta.data %>% mutate(Group= case_when(grepl("UUO",sample) ~"UUO", 
+                                                 grepl("Health",sample) ~ "Health",
+                                                grepl("IRI",sample) ~"IRI",
+                                                .default = as.character(sample)
+                                                 ))
+factor(Urothelium_S1@meta.data$Group)
+Urothelium_S1@meta.data$Group<- ordered(factor(Urothelium_S1@meta.data$Group),levels=c("Health","IRI","UUO"))
+
+# we only select the Urothelium that in Health and UUO model
+Urothelium_S2 <- subset (Urothelium_S1, subset =(Group == "Health" | Group== "UUO") )
+
+table(UUOProjectObject_F@meta.data$sample)
+# we measure the Upk3a, Upk1a, Upk1b and Upk2 positive cell numbers
+Upk3aUro <- subset(Urothelium_S2, subset = Upk3a > 2 )
+Upk1aUro <- subset(Urothelium_S2, subset = Upk1a > 2 )
+Upk1bUro <- subset(Urothelium_S2, subset = Upk1b > 2 )
+Upk2Uro <- subset(Urothelium_S2, subset = Upk2 > 2 )
+table(Upk3aUro@meta.data$sample)
+table(Upk1aUro@meta.data$sample)
+table(Upk1bUro@meta.data$sample)
+table(Upk2Uro@meta.data$sample)
+
+Krt5Uro <- subset(Urothelium_S2, subset = Krt5 > 2 )
+Krt14Uro <- subset(Urothelium_S2, subset = Krt14 > 2 )
+
+table(Krt5Uro@meta.data$sample)
+table(Krt14Uro@meta.data$sample)
+# we used the marker method to define the accurate urothelium
+
+Urothelium <-subset(Urothelium_S2, subset = Upk3a > 2 | Upk1a >2 |Upk1b >2 |Upk2 > 2 )
+
+table(Urothelium@meta.data$Group)
+# Get the average expression of the genes
+UrotheliumAverageExpression<- AverageExpression(object = Urothelium)$RNA
+# Get the percentage of the genes
+# get all the expressed genes 
+UrotheliumExpressedGenes<- rownames(Urothelium)
+#UrotheliuGenePercent <- PercentExpressing(seurat_object = Urothelium, features = UrotheliumExpressedGenes)
+
+# other ways
+plot <- DotPlot(object = Urothelium, features = UrotheliumExpressedGenes)
+plot_data <- plot$data %>% 
+  select(avg.exp,pct.exp, id)
+# write them into file
+
+write.csv(plot_data, file="Urothelium_ExpressedGenes_All_Ranking.csv")
+
+table(Urothelium@meta.data$sample)
+table(UUOProjectObject_F@meta.data$sample)
+
+table(Urothelium_Upk3a_krt5$sample)
+dim(Urothelium_Upk3a_krt5)
+table(Urothelium@meta.data$sample)
+dim(Urothelium)
+
+```
+
+```{r}
+# We collected the dataset from the KUDO and Compared the expression of genes from Control
+# Correlation of Average Expression
+# 1. Compute average expression per cluster (organoid urothelium vs mouse urothelium).
+# Pearson or Spearman correlation:
+MouseCells <- subset(scrna, subset = Group == "Health")
+
+# we only concentrate on the urothelium
+MouseUrothelum@meta.data %>% head()
+# 
+MouseUrothelum <- subset(MouseCells, subset = celltype0421 == "Uro")
+
+
+Idents(MouseUrothelum)
+OrganoidUrothelium <- subset(scrna, subset = Group == "KudoVehicle")
+# integrated the layers
+DefaultAssay(OrganoidUrothelium) <- "RNA"
+
+OrganoidUrothelium <- JoinLayers(OrganoidUrothelium)
+
+# get the average expression of the genes in the mouse urothelium and organoid urothelium
+expr_mat <- GetAssayData(
+  MouseUrothelum,
+  assay = "RNA",
+  layer = "data"
+)
+mouse_avg <- Matrix::rowMeans(expr_mat)
+
+
+Oexpr_mat <- GetAssayData(
+  OrganoidUrothelium,
+  assay = "RNA",
+  layer = "data"
+)
+organoid_avg <- Matrix::rowMeans(Oexpr_mat)
+
+# # Define a threshold for expressed genes
+# expression_threshold <- 0  # Adjust this threshold as needed
+
+# # Filter for expressed genes in both datasets
+
+# expressed_genes_mouse <- names(mouse_avg[mouse_avg > expression_threshold])
+# expressed_genes_organoid <- names(organoid_avg[organoid_avg > expression_threshold])
+
+# Find shared expressed genes
+shared_genes <- intersect(names(mouse_avg), names(organoid_avg))
+
+length(shared_genes)
+# Subset the datasets to only include shared expressed genes
+mouse_avg_2 <- mouse_avg[shared_genes]
+organoid_avg_2 <- organoid_avg[shared_genes]
+
+
+# calculate the correlation between two datasets
+cor_val <- cor(organoid_avg_2, mouse_avg_2, method="spearman")
+
+library(reshape2)
+library(ggplot2)
+
+# Combine data into a data frame
+data <- data.frame(mouse_avg_2, organoid_avg_2)
+
+# Create the correlation dot plot
+MouseUro_OrganoidUro_Cor_Plot<- ggplot(data, aes(x = log10(mouse_avg_2), y = log10(organoid_avg_2))) +
+  geom_point(color = "gray", size = 3) +
+  geom_smooth(method = "lm", color = "black", se = FALSE) +
+  labs(
+    title = "Correlation Dot Plot",
+    x = "Mouse Avg 2 (log2)",
+    y = "Organoid Avg 2 (log2)"
+  ) +
+  theme_minimal() 
+ggsave("MouseUro_OrganoidUro_Cor_Plot.pdf",plot = MouseUro_OrganoidUro_Cor_Plot, height = 4, width = 5)
+
+# we subset the subset(scrna, subset = Group == "Health")
+
+Urothelium_KUDO_MouseH_Obj <- subset(scrna, subset =  Group == "KudoVehicle" |(Group == "Health" & celltype0421 == "Uro"))
+Urothelium_KUDO_MouseH_Obj@meta.data %>% head() 
+DefaultAssay(Urothelium_KUDO_MouseH_Obj) <- "RNA"
+Urothelium_KUDO_MouseH_Obj <- JoinLayers(Urothelium_KUDO_MouseH_Obj)
+
+saveRDS(Urothelium_KUDO_MouseH_Obj, file = "Urothelium_KUDO_MouseH_Obj.rds")
+
+
+
+  # +
+  # annotate(
+  #   "text",
+  #   x = min(log10(mouse_avg_2)) + 0.5,
+  #   y = max(log10(organoid_avg_2)) - 0.5,
+  #   label = paste("Spearman Correlation:", round(cor_val, 2)),
+  #   color = "black",
+  #   size = 4,
+  #   hjust = 0
+  # )
+
+# 2. Marker gene expression Overlaping
+DotPlot(scrna, features = c("Krt5","Tp63","Upk1a","Upk2","Upk3a")) + RotatedAxis()
+# Marker gene overlap (Jaccard index).
+# J=∣Markersmouse​∪Markersorganoid​∣∣Markersmouse​∩Markersorganoid​∣​
+Idents(Urothelium_KUDO_MouseH_Obj) <- "sample"
+levels(Idents(Urothelium_KUDO_MouseH_Obj))
+DotPlot(Urothelium_KUDO_MouseH_Obj, features = c("Krt5","Trp63","Upk1a","Upk2","Upk3a")) + RotatedAxis()
+```
+
+# method 2: the lineage marker expression correlation
+```{r}
+# Checking lineage marker expression correlation will tell you whether the urothelial identity program is preserved, independent of stress/proliferation noise.
+markers_mouse <- c(
+  "Krt5","Krt14","Trp63","Itga6","Krt17",
+  "Krt8","Krt18","Foxa1","Gata3","Pparg",
+  "Upk1a","Upk1b","Upk2","Upk3b","Upk3a","Krt20"
+)
+markers_mouse_expanded <- c(
+  # Basal
+  "Krt5","Krt14","Trp63","Itga6","Krt17","Col17a1","Sox2","Ngfr","Cd44","Lgr5","Pdpn","Epcam",
+  # Intermediate
+  "Krt8","Krt18","Foxa1","Gata3","Pparg","Grhl3","Upk1a","Upk1b","Upk2","Upk3a","S100a1","Cdh1","Tjp1",
+  # Umbrella
+  "Krt20","Shh","Plk2","Umod","Lypd3","Cldn8","Cldn4","Ocln"
+)
+# Subset the datasets to only include shared expressed genes
+mouse_avg_markers <- mouse_avg[markers_mouse]
+organoid_avg_markers <- organoid_avg[markers_mouse]
+cor(mouse_avg_markers,
+    organoid_avg_markers,
+    method = "pearson")
+
+cor(mouse_avg_markers,
+    organoid_avg_markers,
+    method = "spearman")
+
+```
+
+```{r}
+# we selected the top 1000 variable genes in the mouse urothelium and organoid urothelium
+mouse_top1000 <- head(VariableFeatures(MouseUrothelum), 1000)
+organoid_top1000 <- head(VariableFeatures(OrganoidUrothelium), 1000)
+# calculate the Jaccard index
+intersection <- length(intersect(mouse_top1000, organoid_top1000))
+union <- length(union(mouse_top1000, organoid_top1000))
+jaccard_index <- intersection / union
+
+```
+
+
+```{r}
+# we create a method for the measure the two objects average expresssion correlation
+library(Seurat)
+library(Matrix)
+library(ggplot2)
+
+# Function to compute correlation and generate dot plot
+correlation_dotplot <- function(obj1, obj2, assay="RNA", slot="data",
+                                genes=NULL, method="spearman",
+                                log_scale=TRUE, plot_title=NULL,
+                                save_plot=NULL) {
+  
+  # Get average expression
+  expr1 <- Matrix::rowMeans(GetAssayData(obj1, assay=assay, slot=slot))
+  expr2 <- Matrix::rowMeans(GetAssayData(obj2, assay=assay, slot=slot))
+  
+  # If a gene list is provided, subset
+  if(!is.null(genes)) {
+    shared_genes <- intersect(names(expr1), names(expr2))
+    shared_genes <- intersect(shared_genes, genes)
+  } else {
+    shared_genes <- intersect(names(expr1), names(expr2))
+  }
+  
+  # Subset to shared genes
+  expr1_sub <- expr1[shared_genes]
+  expr2_sub <- expr2[shared_genes]
+  
+  # Calculate correlation
+  cor_val <- cor(expr1_sub, expr2_sub, method=method)
+  
+  # Prepare data frame for plotting
+  plot_data <- data.frame(expr1_sub, expr2_sub)
+  colnames(plot_data) <- c("Dataset1", "Dataset2")
+  
+  # Apply log10 if requested
+  if(log_scale) {
+    plot_data$Dataset1 <- log10(plot_data$Dataset1)
+    plot_data$Dataset2 <- log10(plot_data$Dataset2)
+    xlab <- paste0(deparse(substitute(obj1)), " Avg (log10)")
+    ylab <- paste0(deparse(substitute(obj2)), " Avg (log10)")
+  } else {
+    xlab <- paste0(deparse(substitute(obj1)), " Avg")
+    ylab <- paste0(deparse(substitute(obj2)), " Avg")
+  }
+  
+  # Generate plot
+  p <- ggplot(plot_data, aes(x=Dataset1, y=Dataset2)) +
+    geom_point(color="gray", size=3) +
+    geom_smooth(method="lm", color="black", se=FALSE) +
+    labs(title = plot_title %||% "Correlation Dot Plot", x=xlab, y=ylab) +
+    theme_minimal()
+  
+  # Save plot if filename provided
+  if(!is.null(save_plot)) {
+    ggsave(save_plot, plot=p, height=4, width=5)
+  }
+  
+  # Return results
+  return(list(correlation=cor_val, plot=p, shared_genes=shared_genes))
+}
+
+# Example usage:
+res <- correlation_dotplot(MouseUrothelum, OrganoidUrothelium,
+                           assay="RNA", slot="data",
+                           method="spearman",
+                           log_scale=TRUE,
+                           plot_title="Mouse vs Organoid Urothelial Correlation",
+                           save_plot="MouseUro_OrganoidUro_Cor_Plot.pdf")
+
+# Print correlation value
+res$correlation
+
+# Display plot
+res$plot
+length(res$shared_genes)
+```
+
+# Define the function II: top 1000 variable genes for jaccard_index 
+```{r}
+library(Seurat)
+library(VennDiagram)
+
+# Function to compute Jaccard index and draw Venn diagram
+topVariableGenes_Jaccard <- function(obj1, obj2, assay="RNA", slot="data",
+                                     n=1000, plot_title=NULL, 
+                                     save_plot=NULL, verbose=TRUE) {
+  
+  # 1️⃣ Find top variable genes
+  hvgs1 <- head(VariableFeatures(FindVariableFeatures(obj1, assay=assay, selection.method="vst", nfeatures=n)), n)
+  hvgs2 <- head(VariableFeatures(FindVariableFeatures(obj2, assay=assay, selection.method="vst", nfeatures=n)), n)
+  
+  if(verbose) {
+    message("Number of HVGs selected: ", length(hvgs1), " and ", length(hvgs2))
+  }
+  
+  # 2️⃣ Compute Jaccard index
+  shared <- intersect(hvgs1, hvgs2)
+  union_genes <- union(hvgs1, hvgs2)
+  jaccard_index <- length(shared) / length(union_genes)
+  
+  if(verbose) {
+    message("Shared genes: ", length(shared))
+    message("Union genes: ", length(union_genes))
+    message("Jaccard index: ", round(jaccard_index, 3))
+  }
+  
+  # 3️⃣ Generate Venn diagram
+  venn_plot <- venn.diagram(
+    x = list(Object1 = hvgs1, Object2 = hvgs2),
+    filename = NULL,
+    fill = c("skyblue", "pink"),
+    alpha = 0.5,
+    cex = 1.5,
+    cat.cex = 1.2,
+    main = plot_title %||% paste0("Top ", n, " HVGs Venn Diagram")
+  )
+  
+  # Save plot if needed
+  if(!is.null(save_plot)) {
+    png(save_plot, width = 600, height = 600)
+    grid.draw(venn_plot)
+    dev.off()
+  }
+  
+  # Return results
+  return(list(hvgs_object1=hvgs1,
+              hvgs_object2=hvgs2,
+              shared_genes=shared,
+              jaccard_index=jaccard_index,
+              venn_plot=venn_plot))
+}
+
+# Example usage
+Urotheliumres <- topVariableGenes_Jaccard(MouseUrothelum, OrganoidUrothelium,
+                                n=2000,
+                                plot_title="Mouse vs Organoid Top HVGs",
+                                save_plot="Mouse_Organoid_HVGs_Venn.png")
+
+# View Jaccard index
+Urotheliumres$jaccard_index
+Urotheliumres$venn_plot
+```
+
+# #####################
+# UPK lineage
+# #####################
+```{r}
+# for the objects, we only selected the cells that showe expression of Upk3a, Upk1a, Upk1b and Upk2.
+UPKUrotheliumMouse<- subset(MouseUrothelum, Upk3a > 1 | Upk1a > 1 | Upk1b > 1 | Upk2 > 1)
+# we also selected the cells that showe expression of Upk3a, Upk1a, Upk1b and Upk2 in the organoid urothelium
+UPKUrotheliumOrganoid<- subset(OrganoidUrothelium, Upk3a > 1 | Upk1a > 1 | Upk1b > 1 | Upk2 > 1)
+
+# print the correlation:
+UPKres <- correlation_dotplot(UPKUrotheliumMouse, UPKUrotheliumOrganoid,
+                           assay="RNA", slot="data",
+                           method="spearman",
+                           log_scale=TRUE,
+                           plot_title="Mouse vs Organoid UPK lineage Urothelial Correlation",
+                           save_plot="MouseUro_OrganoidUro_UPKPos_Cor_Plot.pdf")
+
+# Print correlation value
+UPKres$correlation
+
+# Display plot
+UPKres$plot
+
+length(UPKres$shared_genes)
+
+# # Venn diagram and Jaccard index for the top variable genes in the UPK positive cells
+UPKtopvariable <- topVariableGenes_Jaccard(UPKUrotheliumMouse, UPKUrotheliumOrganoid,
+                                n=2000,
+                                plot_title="Mouse vs Organoid Top UPKs",
+                                save_plot="Mouse_Organoid_top2000_UPKPos_Venn.png")
+                                
+UPKtopvariable$venn_plot 
+UPKtopvariable$jaccard_index                             
+```
+
+# #####################
+# KRT5, Krt14 lineage
+# #####################
+```{r}
+# for the objects, we only selected the cells that showe expression of Krt5 and Krt14.
+KRT5UrotheliumMouse<- subset(MouseUrothelum, Krt5 > 1 |Krt14 > 1)
+# we also selected the cells that showe expression of Krt5 and Krt14.
+KRT5UrotheliumOrganoid<- subset(OrganoidUrothelium, Krt5 > 1 |Krt14 > 1))
+
+# print the correlation:
+KRTres <- correlation_dotplot(KRT5UrotheliumMouse, KRT5UrotheliumOrganoid,
+                           assay="RNA", slot="data",
+                           method="spearman",
+                           log_scale=TRUE,
+                           plot_title="Mouse vs Organoid KRT5 lineage Urothelial Correlation",
+                           save_plot="MouseUro_OrganoidUro_KRT5Pos_Cor_Plot.pdf")
+
+# Print correlation value
+KRTres$correlation
+KRTres$plot
+length(KRTres$shared_genes)
+# Venn diagram and Jaccard index for the top variable genes in the KRT5 and KRT14 positive cells
+KRTtopvariable <- topVariableGenes_Jaccard(KRT5UrotheliumMouse, KRT5UrotheliumOrganoid,
+                                n=2000,
+                                plot_title="Mouse vs Organoid Top KRT",
+                                save_plot="Mouse_Organoid_top2000_KRTPos_Venn.png")
+KRTtopvariable$jaccard_index   
+```
+
+# ##############
+# UPK,KRT lineage
+# ##############
+```{r}
+# we selected the KRT and UPK positive cells in the mouse urotheloium
+
+UPKKRTUrotheliumMouse<- subset(MouseUrothelum, subset = (Upk3a > 1 | Upk1a > 1 | Upk1b > 1| Upk2 > 1 | Krt5 > 1 |Krt14 > 1)) 
+
+# we also selected the KRT and UPK positive cells in the organoid urotheloium
+UPKKRTUrotheliumOrganoid<- subset(OrganoidUrothelium,(Upk3a > 1 | Upk1a > 1 | Upk1b > 1| Upk2 > 1 | (Krt5 > 1 |Krt14 > 1)) 
+# print the correlation:
+UPKKRTres <- correlation_dotplot(UPKKRTUrotheliumMouse, UPKKRTUrotheliumOrganoid,
+                           assay="RNA", slot="data",
+                           method="spearman",
+                           log_scale=TRUE,
+                           plot_title="Mouse vs Organoid UPK+ or KRT+ Urothelial Correlation",
+                           save_plot="MouseUro_OrganoidUro_UPKKRT5Pos_Cor_Plot.pdf")
+
+# Print correlation value
+UPKKRTres$correlation
+UPKKRTres$plot
+length(UPKKRTres$shared_genes)
+
+# Venn diagram and Jaccard index for the top variable genes in the UPK+ or KRT+ cells
+UPKKRTtopvariable <- topVariableGenes_Jaccard(UPKKRTUrotheliumMouse, UPKKRTUrotheliumOrganoid,
+                                n=2000,
+                                plot_title="Mouse vs Organoid Top UPK KRT",
+                                save_plot="Mouse_Organoid_top2000_UPKKRTPos_Venn.png")
+```
+
+
+```{r}
+# check the annotation of scrna
+Idents(scrna)
+scrna@meta.data %>% head()
+scrna@meta.data$celltype0421
+```
+
+# ############### ##############
+# ############### ##############
+# Reclustering the Urothelium_KUDO_MouseH_Obj to check the overlapping of the two datasets
+# ############### ##############
+# ############### ##############
+
+```{r}
+Urothelium_KUDO_MouseH_Obj<- readRDS("Urothelium_KUDO_MouseH_Obj.rds")
+# we recluster the Urothelium_KUDO_MouseH_Obj
+Urothelium_KUDO_MouseH_Obj <- Urothelium_KUDO_MouseH_Obj %>%  
+  NormalizeData() %>% 
+  FindVariableFeatures(selection.method = "vst", nfeatures = 2000) %>% 
+  ScaleData() %>% 
+  SCTransform(vars.to.regress = c("percent.mt"))
+
+## find most vaible features across sample to integrate
+
+
+Urothelium_KUDO_MouseH_Obj <-  RunPCA(scrna, features = VariableFeatures(object = Urothelium_KUDO_MouseH_Obj),assay = "SCT",npcs=20)
+#scrna <-readRDS(file = "KudoUUOComparision_Scrna_PCA.rds")
+# then use the Harmony to remove batches
+Urothelium_KUDO_MouseH_Obj <- RunHarmony(Urothelium_KUDO_MouseH_Obj, group.by.vars = 'sample', dims.use = 1:20, plot_convergence= FALSE, reduction = "pca", assay.use = "SCT", reduction.save = "harmony")
+#saveRDS(scrna, file = "KudoUUOComparision_Scrna_Harmony.rds")
+Urothelium_KUDO_MouseH_Obj <- RunUMAP(Urothelium_KUDO_MouseH_Obj, dims = 1:20,reduction = "harmony")
+#saveRDS(scrna, file = "KudoUUOComparision_Scrna_RunUMAP.rds")
+Urothelium_KUDO_MouseH_Obj <- FindNeighbors(Urothelium_KUDO_MouseH_Obj, dims = 1:20, reduction = "harmony")
+#saveRDS(scrna, file = "KudoUUOComparision_Scrna_FindNeighbor.rds")
+Urothelium_KUDO_MouseH_Obj <- FindClusters(Urothelium_KUDO_MouseH_Obj, resolution = 0.2)
+
+OverlappingDimPlot<- DimPlot(Urothelium_KUDO_MouseH_Obj)
+ggsave("OverlappingDimPlot.pdf",plot = OverlappingDimPlot, height = 4, width = 5)
+OverlappingDimPlotSplit<- DimPlot(Urothelium_KUDO_MouseH_Obj, split.by = "sample")
+ggsave("OverlappingDimPlotSplit.pdf",plot = OverlappingDimPlotSplit, height = 4, width = 9)
+
+saveRDS(Urothelium_KUDO_MouseH_Obj, file = "Urothelium_KUDO_MouseH_Obj_Reclustered.rds")
+
+Urothelium_KUDO_MouseH_Obj <- readRDS("Urothelium_KUDO_MouseH_Obj_Reclustered.rds")
+markers_mouse_expanded <- c(
+  # Basal
+  "Krt5","Krt14","Trp63","Itga6","Krt17","Col17a1","Sox2","Ngfr","Cd44","Lgr5","Pdpn","Epcam",
+  # Intermediate
+  "Krt8","Krt18","Foxa1","Gata3","Pparg","Grhl3","Upk1a","Upk1b","Upk2","Upk3a","S100a1","Cdh1","Tjp1",
+  # Umbrella
+  "Krt20","Shh","Plk2","Umod","Lypd3","Cldn8","Cldn4","Ocln"
+)
+
+Idents(Urothelium_KUDO_MouseH_Obj) <- "sample"
+UrothelialMarkersDotPlot<- DotPlot(Urothelium_KUDO_MouseH_Obj, features = markers_mouse_expanded) + RotatedAxis()
+ggsave("UrothelialMarkersDotPlot_Urothelim_KUDO_MouseH_Reclustered.pdf", plot=UrothelialMarkersDotPlot, height=3, width=12)
+markers_mouse_expanded_withothers<- c("Krt5","Krt14","Trp63",
+  "Krt8","Krt18","Foxa1",
+  "Upk1a","Upk1b","Upk2","Upk3b","Upk3a","Krt20",
+  "Lrp2","Slc34a1","Slc13a3", # Proximal tubule cells (PT)
+  "Slc12a3","Pvalb","Wnk1",# Distal connecting tublue (DCT)
+"Umod","Slc12a1","Cldn10", # Thick ascending limb cells (TAL)
+                      "Klk1","Slc8a1","Calb1", # Connecting tubule (CNT)
+                     "Slc14a2","Fst","Bst1", # descending thin  limb cells (DTL)
+                     #"Akr1b1","Sh3gl3","Prox1", # ascending thin limb cells (ATL)
+                     #"Enox1","Thsd4", #Macula densa
+                      "Aqp2","Hsd11b2","Scnn1g", # principal cells (PC)
+                    "Atp6v1g3","Aqp6","Slc26a7", # Intercalated cells
+                    "Cdh5","Igfbp3","Pecam1", # Endothelium
+                    "Col3a1","Fbn1","Lum","Col1a1", # Fibroblast
+                    "Ireb2","Alas2", # Plasmacytoid dentritic cells
+                    "S100a8","S100a9","Il1b", # Neutrophil
+                    "C1qa","C1qb","Aif1", # Macrophage
+                    "Cxcr6","Cd247","Cd3e", # T cells
+                    "Igkc","Cd79a","Cd79b", # B cells
+                    "Ccl5","Nkg7","Cd7" # NK/Cd8 cells
+  
+  )
+KidneyMarkersDotPlot<- DotPlot(Urothelium_KUDO_MouseH_Obj, features = markers_mouse_expanded_withothers) + RotatedAxis()
+ggsave("KidneyMarkersDotPlot_Urothelim_KUDO_MouseH_Reclustered.pdf", plot=KidneyMarkersDotPlot, height=4, width=20)
+
+# check the average expression of the markers in the mouse urothelium and organoid urothelium
+
+avg_exp <- AverageExpression(
+  object = Urothelium_KUDO_MouseH_Obj,
+  features = markers_mouse_expanded_withothers,
+  group.by = "sample"   # or "seurat_clusters", "condition"
+)
+avg_exp%>% head()
+# set up the order of the columns in the same order as the markers
+aveg_exp_df <- as.data.frame(avg_exp$RNA)
+
+
+# identify missing genes
+missing_genes <- setdiff(markers_mouse_expanded_withothers, rownames(aveg_exp_df))
+if (length(missing_genes) > 0) {
+  zero_mat <- matrix(
+    0,
+    nrow = length(missing_genes),
+    ncol = ncol(aveg_exp_df),
+    dimnames = list(missing_genes, colnames(aveg_exp_df))
+  )
+  
+  aveg_exp_df <- rbind(aveg_exp_df, zero_mat)
+}
+
+aveg_exp_df$Gene <- rownames(aveg_exp_df)
+
+# change to the long type
+aveg_exp_df_long <- aveg_exp_df %>%
+  pivot_longer(cols = -Gene, names_to = "Sample", values_to = "AverageExpression")
+
+library(ggplot2)
+# set the order of the genes in the same order as the markers
+aveg_exp_df_long$Gene <- factor(aveg_exp_df_long$Gene, levels = markers_mouse_expanded_withothers)
+
+AvereageExpressionBarPlot <-
+ggplot(aveg_exp_df_long, aes(x = Gene, y = AverageExpression, fill= Sample)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8)) +
+  theme_classic(base_size = 14) +
+  labs(y = "Average Expression", x = NULL) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.title = element_blank()
+  )
+ggsave("AvereageExpressionBarPlot_Urothelim_KUDO_MouseH_Reclustered.pdf", plot=AvereageExpressionBarPlot, height=4, width=15)
+
+```
