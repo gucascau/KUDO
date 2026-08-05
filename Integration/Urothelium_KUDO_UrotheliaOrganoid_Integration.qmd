@@ -62,6 +62,7 @@ library(dplyr)
 library(pheatmap)
 
 library(patchwork)
+library(zellkonverter)
 # we use v3 instead of v5
 #options(Seurat.object.assay.version = "v5")
 
@@ -158,6 +159,15 @@ levels(factor(UUOProjectObject_F@meta.data$celltype0421))
 #Urothelium <-subset(UUOProjectObject_F, subset = celltype0421 == "Uro")
 #Urothelium <-subset(UUOProjectObject_F, subset = Upk3a > 0 | Krt5 > 0 | Krt8 >0| Upk1b >0 |Krt14 >0 |Upk2 >0 |Sprr1a >0 |Psca >0 |Itga6>0 |Pparg >0)
 table(UUOProjectObject_F@meta.data$sample)
+# save the object into a rds file for the future use
+saveRDS(UUOProjectObject_F, file = "UUOProjectObject_F.rds")
+
+#UUOProjectObject_F <- readRDS("UUOProjectObject_F.rds")
+#transfer the rds to h5ad file for the future use
+UUOProjectObject_Fsce <- as.SingleCellExperiment(UUOProjectObject_F)
+writeH5AD(UUOProjectObject_Fsce, file = "UUOProjectObject_F.h5ad")
+
+
 ```
 
 # Extract the Urothlium

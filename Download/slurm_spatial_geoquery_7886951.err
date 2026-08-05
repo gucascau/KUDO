@@ -86,4 +86,187 @@ GSE269884-GPL33896_series_matrix.txt.gz
 GSE269884-GPL34290_series_matrix.txt.gz
 trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE269nnn/GSE269884/suppl//GSE269884_RAW.tar?tool=geoquery'
 Content type 'application/x-tar' length 80321269760 bytes (76600.3 MB)
-==
+==================================================
+downloaded 76600.3 MB
+
+[SP-1] Download complete.
+
+============================================================
+SP-2: Muto et al. Nat Genet 2024 — Human Visium + CosMx
+============================================================
+
+ACTION REQUIRED: Verify GEO accession number.
+  1. Go to: https://www.nature.com/articles/s41588-024-01802-x
+  2. Find 'Data Availability' section
+  3. Note the GEO accession (e.g., GSExxxxxx)
+  4. Uncomment and update the code below, then re-run this script.
+
+Found 1 file(s)
+GSE211785_series_matrix.txt.gz
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_7_13_23_slide0_annotated_iPTsubclusters.h5ad.gz?tool=geoquery'
+Content type 'application/x-gzip' length 650287619 bytes (620.2 MB)
+==================================================
+downloaded 620.2 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_EXPORT_ST_counts.rds.gz?tool=geoquery'
+Content type 'application/x-gzip' length 141998290 bytes (135.4 MB)
+==================================================
+downloaded 135.4 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_EXPORT_ST_umap.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 705335 bytes (688 KB)
+==================================================
+downloaded 688 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_EXPORT_scRNA-seq_snRNA-seq_snATAC-seq_umap.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 5745305 bytes (5.5 MB)
+==================================================
+downloaded 5.5 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_EXPORT_scRNAseq_snRNAseq_snATACseq_counts.rds.gz?tool=geoquery'
+Content type 'application/x-gzip' length 1780116746 bytes (1697.7 MB)
+==================================================
+downloaded 1697.7 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_RAW.tar?tool=geoquery'
+Content type 'application/x-tar' length 1239183360 bytes (1181.8 MB)
+==================================================
+downloaded 1181.8 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_ST_metadata.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 833714 bytes (814 KB)
+==================================================
+downloaded 814 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_Susztak_KPMP_SC_SN_ATAC_merged_PostSCVI_final.h5ad.gz?tool=geoquery'
+Content type 'application/x-gzip' length 9692790758 bytes (9243.8 MB)
+==================================================
+downloaded 9243.8 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_Susztak_SC_SN_ATAC_merged_PostSCVI_final.h5ad.gz?tool=geoquery'
+Content type 'application/x-gzip' length 5923105253 bytes (5648.7 MB)
+==================================================
+downloaded 5648.7 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_Susztak_SC_SN_ATAC_merged_PreSCVI_final.h5ad.gz?tool=geoquery'
+Content type 'application/x-gzip' length 5030544425 bytes (4797.5 MB)
+==================================================
+downloaded 4797.5 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-076-A1-2.json.gz?tool=geoquery'
+Content type 'application/x-gzip' length 96022 bytes (93 KB)
+==================================================
+downloaded 93 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-076-B1.json.gz?tool=geoquery'
+Content type 'application/x-gzip' length 95231 bytes (92 KB)
+==================================================
+downloaded 92 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-076-C1.json.gz?tool=geoquery'
+Content type 'application/x-gzip' length 95822 bytes (93 KB)
+==================================================
+downloaded 93 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-076-D1.json.gz?tool=geoquery'
+Content type 'application/x-gzip' length 93548 bytes (91 KB)
+==================================================
+downloaded 91 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-076_A1-HK3035.tif.gz?tool=geoquery'
+Content type 'application/x-gzip' length 107483983 bytes (102.5 MB)
+==================================================
+downloaded 102.5 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-076_B1-HK2852.tif.gz?tool=geoquery'
+Content type 'application/x-gzip' length 118090257 bytes (112.6 MB)
+==================================================
+downloaded 112.6 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-076_C1-HK2871.tif.gz?tool=geoquery'
+Content type 'application/x-gzip' length 115861574 bytes (110.5 MB)
+==================================================
+downloaded 110.5 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-076_D1-HK2873.tif.gz?tool=geoquery'
+Content type 'application/x-gzip' length 86046089 bytes (82.1 MB)
+==================================================
+downloaded 82.1 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-079-A1_1.json.gz?tool=geoquery'
+Content type 'application/x-gzip' length 94329 bytes (92 KB)
+==================================================
+downloaded 92 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-079-B1_1.json.gz?tool=geoquery'
+Content type 'application/x-gzip' length 96138 bytes (93 KB)
+==================================================
+downloaded 93 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-079-C1-1.json.gz?tool=geoquery'
+Content type 'application/x-gzip' length 96090 bytes (93 KB)
+==================================================
+downloaded 93 KB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-79_A1_HK2770.tif.gz?tool=geoquery'
+Content type 'application/x-gzip' length 100923821 bytes (96.2 MB)
+==================================================
+downloaded 96.2 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_V11Y24-79_B1_HK2844.tif.gz?tool=geoquery'
+Content type 'application/x-gzip' length 116394082 bytes (111.0 MB)
+==================================================
+downloaded 111.0 MB
+
+trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE211nnn/GSE211785/suppl//GSE211785_scRNA-seq_snRNA-seq_snATAC-seq_metadata.txt.gz?tool=geoquery'
+Content type 'application/x-gzip' length 9524635 bytes (9.1 MB)
+==================================================
+downloaded 9.1 MB
+
+[SP-2] Download complete.
+
+============================================================
+SPATIAL ANALYSIS ROADMAP:
+============================================================
+
+SP-3 (GSE282059 — Human CosMx 6000-plex UUO):
+  Manuscript role: Figure 7 spatial validation
+  Key analyses:
+    1. Load CosMx data into Seurat
+    2. Annotate urothelial cells using renal pelvis markers
+       (UPK1A, UPK2, UPK3A, KRT20, PPARG, FOXA1)
+    3. Compare renal pelvis identity score: UUO vs. Healthy
+    4. Visualize spatial distribution of renal pelvis TF regulon activity
+    5. Show spatial loss of PPARG/FOXA1 signal in UUO tissue sections
+
+SP-4 (GSE253439 — Human CosMx 980-plex Pyelonephritis):
+  Manuscript role: Figure 7 extended / Supplementary
+  Key analyses:
+    1. Load pre-built Seurat RDS object
+    2. Focus on pyelonephritis samples (upper urinary tract infection)
+    3. Score renal pelvis identity signature
+    4. Compare to IgA / MCD controls
+
+SP-1 (Mouse Xenium + Visium — pending accession):
+  Manuscript role: Figure 2 / Figure 5 spatial validation
+  Key analyses:
+    1. Spatially map renal pelvis-specific marker genes in mouse kidney
+    2. Confirm that site-specific genes are expressed in papilla/pelvis region
+    3. Use Xenium single-cell data to validate cell type assignments
+    4. Overlay TF regulon scores onto Visium spatial coordinates
+
+SP-2 (Human Visium + CosMx — pending accession):
+  Manuscript role: Figure 4 cross-species spatial validation
+  Key analyses:
+    1. Identify Uro2-equivalent cells in spatial context
+    2. Map PPARG/FOXA1 regulon activity in renal pelvis region
+    3. Compare spatial TF programs: healthy vs. CKD
+
+SP-5 (KPMP Visium — manual download):
+  Manuscript role: Figure 7 clinical validation
+  Key analyses:
+    1. Download from atlas.kpmp.org
+    2. Score renal pelvis signature on Visium spots
+    3. Correlate with histological fibrosis score
+
+Script complete: 2026-04-09 17:42:03.380643
